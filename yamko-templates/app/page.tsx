@@ -5,7 +5,19 @@ import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
 import Image from 'next/image';
 import backgroundIMG from '@/images/exBG.png'
-import { BentoDish, BentoBoxContainer, Button, ButtonText, Input, Text, Link, CheckBox } from './essentials';
+import { 
+  BentoDish,
+  BentoBoxContainer,
+  Button,
+  ButtonText,
+  Input,
+  Text,
+  Link,
+  CheckBox,
+  CustomTable,
+  H2,
+  Chart
+ } from './essentials';
 
 
 // Components
@@ -26,19 +38,34 @@ const Page = () => {
     <ThemeProvider theme={isDarkMode ? themes.dark : themes.light}>
       <PageContainer>
         <NavBar/>
+
         <BentoBoxContainer>
-          <BentoDish VerticalScale={2}>
-            <Text>Login Form</Text>
+
+          <BentoDish VerticalScale={1.5} HorizontalScale={1}>
+            <H2>Login Form</H2>
             <Input PlaceHolder='Username' Type='text'></Input>
             <Input PlaceHolder='Password' Type='password'></Input>
             <div style={{display: 'flex', flexDirection: 'row', marginTop: '10px'}}>
-              <CheckBox type='checkbox'/>
-              <Text style={{fontSize: '10pt'}}>Remember Me</Text>
+              <CheckBox InputType='checkbox'/>
+              <Text style={{fontSize: '10pt', marginLeft: '7.5px', marginRight: 'auto'}}>Remember Me</Text>
             </div>
             <Link style={{fontSize: '10pt', marginBottom: '0px'}}>Forgot Username/Password?</Link>
             <Button><ButtonText>Login</ButtonText></Button>
           </BentoDish>
+
+          <BentoDish VerticalScale={1.5} HorizontalScale={2}>
+            <H2>Data Table</H2>
+            <CustomTable/>
+          </BentoDish>
+
+          <BentoDish VerticalScale={1.5} HorizontalScale={2}>
+            <H2>Data Chart</H2>
+            <Chart/>
+          </BentoDish>
         </BentoBoxContainer>
+
+
+
         <PageBackground/>
       </PageContainer>
     </ThemeProvider>

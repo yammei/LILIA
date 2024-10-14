@@ -46,7 +46,7 @@ const PageBackgroundIMG = styled.div`
   background-image: url(${backgroundIMG.src});
   background-size: auto;
   background-repeat: no-repeat;
-  filter: brightness(0.5);
+  filter: brightness(0.5) blur(50px) hue-rotate(105deg);
   z-index: -1;
   transition: background-position 0.05s ease-out;
 `;

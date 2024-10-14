@@ -20,4 +20,5 @@ Dependency log.
 ```bash
 sudo npm install styled-components
 sudo npm install --save-dev @types/styled-components
+sudo npm install chart.js react-chartjs-2
 ```
