@@ -1,5 +1,7 @@
 Templates for custom websites.
 
+<img src='https://github.com/yammei/yamko/blob/main/Screenshot%202024-10-14%20at%2014.18.36.png'/>
+
 Setting up environment.
 
 ```bash
