@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
 import Image from 'next/image';
-import backgroundIMG from '@/images/exBG.png'
-import { 
+import yammei from '@/images/yammei.png'
+import {
   BentoDish,
   BentoBoxContainer,
   Button,
@@ -39,8 +39,7 @@ const Page = () => {
       <PageContainer>
         <NavBar/>
 
-        <BentoBoxContainer>
-
+        <BentoBoxContainer style={{display: 'none'}}>
           <BentoDish VerticalScale={1.5} HorizontalScale={1}>
             <H2>Login Form</H2>
             <Input PlaceHolder='Username' Type='text'></Input>
@@ -52,19 +51,15 @@ const Page = () => {
             <Link style={{fontSize: '10pt', marginBottom: '0px'}}>Forgot Username/Password?</Link>
             <Button><ButtonText>Login</ButtonText></Button>
           </BentoDish>
-
           <BentoDish VerticalScale={1.5} HorizontalScale={2}>
             <H2>Data Table</H2>
             <CustomTable/>
           </BentoDish>
-
           <BentoDish VerticalScale={1.5} HorizontalScale={2}>
             <H2>Data Chart</H2>
             <Chart/>
           </BentoDish>
         </BentoBoxContainer>
-
-
 
         <PageBackground/>
       </PageContainer>
@@ -84,6 +79,18 @@ const PageContainer = styled.div`
   margin: 0px auto;
   /* background-color: ${(props) => props.theme.background}; */
   overflow: hidden;
+`;
+
+const Title = styled.p`
+  font-size: 25pt;
+`;
+
+
+const ProjectContainer = styled.div`
+  height: 500px;
+  width: 500px;
+  background-color: rgb(250, 250, 250);
+  border-radius: 25px;
 `;
 
 export default Page;

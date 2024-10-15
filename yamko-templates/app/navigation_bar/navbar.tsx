@@ -20,9 +20,9 @@ const NavBar = () => {
       <NavBarLink href='/'>Home</NavBarLink>
         <NavBarLinksContainer>
             <NavBarLink href='/'>About</NavBarLink>
-            <NavBarLink href='/'>Products</NavBarLink>
+            <NavBarLink href='/'>Services</NavBarLink>
             <NavBarLink href='/'>Pricing</NavBarLink>
-            <NavBarLink href='/'>Profile</NavBarLink>
+            <NavBarLink href='/'>Contact</NavBarLink>
         </NavBarLinksContainer>
       </NavBarContainer>
     </ThemeProvider>
@@ -42,7 +42,7 @@ const NavBarContainer = styled.div`
     background: linear-gradient(
         to bottom,
         ${(props) => props.theme.navbarBG} 0%,
-        ${(props) => props.theme.navbarBG.replace(/\.75\)/, '.05)')} 100%
+        ${(props) => props.theme.navbarBG.replace(/\.25\)/, '.0)')} 100%
     );
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -65,6 +65,9 @@ const NavBarLink = styled.a`
         color: ${(props) => props.theme.textHovered};
     }
     /* background-color: red; */
+`;
+
+const NavBarLinkText = styled.p`
 `;
 
 export default NavBar;
