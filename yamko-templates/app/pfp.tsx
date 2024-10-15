@@ -19,8 +19,8 @@ const ProfilePicture = styled.div`
     border-radius: 999px;
     box-shadow: 7.5px 10px 5px rgba(0, 0, 0, 0.25);
 
-    margin-top: -40px;
-    margin-left: -50px;
+    margin-top: -30px;
+    margin-left: -60px;
     transform: rotate(30deg);
     z-index: 2;
     overflow: hidden;
