@@ -3,8 +3,6 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
-import Image from 'next/image';
-import yammei from '@/images/yammei.png'
 import {
   BentoDish,
   BentoBoxContainer,
@@ -39,7 +37,7 @@ const Page = () => {
       <PageContainer>
         <NavBar/>
 
-        <BentoBoxContainer style={{display: 'none'}}>
+        {/* <BentoBoxContainer style={{display: 'none'}}>
           <BentoDish VerticalScale={1.5} HorizontalScale={1}>
             <H2>Login Form</H2>
             <Input PlaceHolder='Username' Type='text'></Input>
@@ -59,7 +57,7 @@ const Page = () => {
             <H2>Data Chart</H2>
             <Chart/>
           </BentoDish>
-        </BentoBoxContainer>
+        </BentoBoxContainer> */}
 
         <PageBackground/>
       </PageContainer>
@@ -73,8 +71,7 @@ const PageContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 1080px;
-  height: fit-content;
+  height: 1080px;
   width: 1920px;
   margin: 0px auto;
   /* background-color: ${(props) => props.theme.background}; */
