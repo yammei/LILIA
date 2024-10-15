@@ -23,4 +23,6 @@ Dependency log.
 sudo npm install styled-components
 sudo npm install --save-dev @types/styled-components
 sudo npm install chart.js react-chartjs-2
+sudo npm install @next/font
+sudo npm install @next/font google
 ```
