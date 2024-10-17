@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+            padding: 20px;
+        }
+
+        .menu-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #d62828;
+        }
+
+        .menu-section {
+            margin-bottom: 40px;
+        }
+
+        .menu-section h2 {
+            font-size: 1.8rem;
+            color: #333;
+            border-bottom: 2px solid #d62828;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-item-name {
+            font-size: 1.2rem;
+            color: #2a9d8f;
+        }
+
+        .menu-item-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .menu-description {
+            font-size: 0.9rem;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <h1>Restaurant Menu</h1>
+
+        <div class="menu-section">
+            <h2>Appetizers</h2>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Bruschetta</span>
+                    <p class="menu-description">Toasted bread with tomatoes, garlic, and basil.</p>
+                </div>
+                <span class="menu-item-price">$8.00</span>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Garlic Bread</span>
+                    <p class="menu-description">Crispy bread with garlic butter and parsley.</p>
+                </div>
+                <span class="menu-item-price">$6.00</span>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Mozzarella Sticks</span>
+                    <p class="menu-description">Golden-fried mozzarella with marinara sauce.</p>
+                </div>
+                <span class="menu-item-price">$9.00</span>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Main Courses</h2>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Grilled Salmon</span>
+                    <p class="menu-description">Served with lemon butter sauce and vegetables.</p>
+                </div>
+                <span class="menu-item-price">$18.00</span>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Ribeye Steak</span>
+                    <p class="menu-description">12 oz ribeye, cooked to perfection, served with mashed potatoes.</p>
+                </div>
+                <span class="menu-item-price">$25.00</span>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Chicken Alfredo</span>
+                    <p class="menu-description">Pasta with creamy Alfredo sauce and grilled chicken.</p>
+                </div>
+                <span class="menu-item-price">$15.00</span>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h2>Desserts</h2>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Cheesecake</span>
+                    <p class="menu-description">Creamy cheesecake with a graham cracker crust.</p>
+                </div>
+                <span class="menu-item-price">$7.00</span>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Chocolate Lava Cake</span>
+                    <p class="menu-description">Warm chocolate cake with a gooey center, served with vanilla ice cream.</p>
+                </div>
+                <span class="menu-item-price">$8.00</span>
+            </div>
+            <div class="menu-item">
+                <div>
+                    <span class="menu-item-name">Tiramisu</span>
+                    <p class="menu-description">Classic Italian dessert with espresso and mascarpone.</p>
+                </div>
+                <span class="menu-item-price">$8.00</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -14,25 +14,45 @@ const customFont = Cherry_Bomb_One({
 
 interface FolderProps {
     folderName: string;
+    subAppID: number;
+    subAppSwitcher: any;
+    activeSubApp: number;
 }
 
-export const Folder: React.FC<FolderProps> = ({ folderName }) => {
+export const Folder: React.FC<FolderProps> = ({ folderName, subAppID, subAppSwitcher, activeSubApp }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [currIcon, setCurrIcon] = useState(fclose);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
-        setIsMounted(true);
-    }, []);
+        if (activeSubApp === -1) {
+            setIsMounted(true);
+        }
+        if (activeSubApp !== subAppID) {
+            console.log(`Closing Sub Application ID: ${subAppID}`);
+            if ((isOpen && (activeSubApp !== subAppID)) || (!isOpen && activeSubApp === subAppID)) {
+                setIsTransitioning(true);
+                setTimeout(() => {
+                    setIsOpen(false);
+                    setCurrIcon(fclose);
+                    setIsTransitioning(false);
+                }, 150);
+            }
+        }
+    }, [activeSubApp]);
 
     const handleClick = () => {
+        if (!isOpen) {
+            subAppSwitcher(subAppID);
+        } else {
+            subAppSwitcher(-1);
+        }
         setIsTransitioning(true);
 
         setTimeout(() => {
             setIsOpen(!isOpen);
             setCurrIcon(isOpen ? fclose : fopen);
-
             setIsTransitioning(false);
         }, 150);
     };
@@ -51,9 +71,9 @@ export const Folder: React.FC<FolderProps> = ({ folderName }) => {
 
 const FolderContainer = styled.div`
     scale: .75;
-    height: fit-content;
-    width: fit-content;
-    margin-bottom: -10px;
+    height: 150px;
+    width: 150px;;
+    margin-bottom: -25px;
     /* background-color: red; */
 `;
 
@@ -93,8 +113,14 @@ const FolderIMG = styled.div<FolderIMGProps>`
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 20px;
+    margin: 20px auto;
     margin-bottom: 10px;
+    transition: filter 0.25s ease-in-out;
+
+    &:hover {
+        filter: brightness(1.2);
+    }
+
     ${({ isTransitioning }) =>
         isTransitioning
             ? css`
@@ -105,6 +131,8 @@ const FolderIMG = styled.div<FolderIMGProps>`
               `}
 `;
 
+
+
 const FolderText = styled.p`
     color: rgb(250, 250, 250);
     font-size: 14pt;
@@ -113,6 +141,6 @@ const FolderText = styled.p`
     max-height: 50px;
     height: fit-content;
     width: 125px;
-    margin-top: -5px;
-    margin-left: 5px;
+    margin: 0px auto;
+    /* background-color: cyan; */
 `;

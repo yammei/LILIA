@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { colorThemes } from './themes';
+import { colorThemes } from '@/app/themes';
 import {
   BentoDish,
   BentoBoxContainer,
@@ -15,16 +15,17 @@ import {
   CustomTable,
   H2,
   Chart
- } from './essentials';
+ } from '@/app/essentials';
+ import { Inter } from '@next/font/google';
 
-
-// Components
-import NavBar from './navigation_bar/navbar';
-import PageBackground from './desktop';
+ const customFont = Inter({
+     weight: '400',
+     subsets: ['latin'],
+ });
 
 const themes = colorThemes();
 
-const Page = () => {
+export const DataManager = () => {
 
   const [isDarkMode, setIsDarkMode] = useState(true);
 
@@ -34,10 +35,9 @@ const Page = () => {
 
   return (
     <ThemeProvider theme={isDarkMode ? themes.dark : themes.light}>
-      <PageContainer>
-        <NavBar/>
+      <DataManagerContainer className={customFont.className}>
 
-        {/* <BentoBoxContainer style={{display: 'none'}}>
+        <BentoBoxContainer>
           <BentoDish VerticalScale={1.5} HorizontalScale={1}>
             <H2>Login Form</H2>
             <Input PlaceHolder='Username' Type='text'></Input>
@@ -53,29 +53,34 @@ const Page = () => {
             <H2>Data Table</H2>
             <CustomTable/>
           </BentoDish>
+        </BentoBoxContainer>
+
+        {/* <BentoBoxContainer>
           <BentoDish VerticalScale={1.5} HorizontalScale={2}>
             <H2>Data Chart</H2>
             <Chart/>
           </BentoDish>
         </BentoBoxContainer> */}
 
-        <PageBackground/>
-      </PageContainer>
+      </DataManagerContainer>
     </ThemeProvider>
   );
 
 
 };
 
-const PageContainer = styled.div`
+const DataManagerContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   height: 1080px;
   width: 1920px;
   margin: 0px auto;
-  /* background-color: ${(props) => props.theme.background}; */
+  background-color: ${(props) => props.theme.background};
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
   overflow: hidden;
+  z-index: 999;
 `;
 
 const Title = styled.p`
@@ -89,5 +94,3 @@ const ProjectContainer = styled.div`
   background-color: rgb(250, 250, 250);
   border-radius: 25px;
 `;
-
-export default Page;

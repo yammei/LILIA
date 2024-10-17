@@ -1,5 +1,5 @@
-'use client';
 
+'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import backgroundIMG from '@/images/clouds.png';
@@ -9,9 +9,36 @@ import descriptionIMG from '@/images/wings.png';
 // Components
 import { Message } from './message';
 import { PFP } from './pfp';
+import { Window } from './window';
 import { Folder } from './folder';
+import { DataManager } from './sub_apps/data_manager';
+import { IFrame } from './iframe';
 
 const PageBackground = () => {
+
+    const pages = {
+        page0: {
+            name: 'Data Management',
+        },
+        page1: {
+            name: 'Example Restaurant',
+            src: '/restaurant.html',
+        },
+        page2: {
+            name: 'Empty Folder',
+            src: '/404.html',
+        },
+        page3: {
+            name: 'Empty Folder',
+            src: '/404.html',
+        },
+        page4: {
+            name: 'Empty Folder',
+            src: '/404.html',
+        },
+    };
+
+    const [activeWindow, setActiveWindow] = useState(-1);
     const [backgroundPosition, setBackgroundPosition] = useState({ x: 960, y: 540 });
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -21,7 +48,6 @@ const PageBackground = () => {
 
         const rect = container.getBoundingClientRect();
 
-        // Calculate mouse position relative to the parent container
         const xPosB = ((e.clientX - rect.left) / rect.width) * 1920;
         const yPosB = ((e.clientY - rect.top) / rect.height) * 1080;
 
@@ -31,7 +57,6 @@ const PageBackground = () => {
     useEffect(() => {
         const container = containerRef.current;
         if (container) {
-            // Add mousemove event listener to the parent container
             container.addEventListener('mousemove', handleMouseMove);
         }
 
@@ -50,22 +75,48 @@ const PageBackground = () => {
         ninthlevelofhellground: 666,
     }
 
+    const switchSubApplications = (subAppID: number) => {
+        setActiveWindow(subAppID);
+        console.log(`Switching to Sub Application ID: ${subAppID}`);
+    };
+
+    const displaySubApplication = () => {
+        switch (activeWindow) {
+            case 0:
+                return <Window windowName={pages.page0.name} subAppSwitcher={switchSubApplications}><DataManager /></Window>;
+            case 1:
+                return <Window windowName={pages.page1.name} subAppSwitcher={switchSubApplications}><IFrame src={pages.page1.src} /></Window>;
+            case 2:
+                return <Window windowName={pages.page2.name} subAppSwitcher={switchSubApplications}><IFrame src={pages.page2.src} /></Window>;
+            case 3:
+                return <Window windowName={pages.page3.name} subAppSwitcher={switchSubApplications}><IFrame src={pages.page3.src} /></Window>;
+            case 4:
+                return <Window windowName={pages.page4.name} subAppSwitcher={switchSubApplications}><IFrame src={pages.page4.src} /></Window>;
+            default:
+                return <></>;
+        }
+    };
+
     return (
         <Container ref={containerRef}>
             <PageForegroundIMG x={backgroundPosition.x / parallaxStrength.midground} y={backgroundPosition.y / parallaxStrength.midground * x2y} />
             <PageMidgroundIMG x={backgroundPosition.x / parallaxStrength.foreground} y={backgroundPosition.y / 25} />
 
-            <MessageContainer style={{ zIndex: '1' }} x={backgroundPosition.x / parallaxStrength.midground} y={backgroundPosition.y / parallaxStrength.midground * x2y}>
+            <MessageContainer style={{ zIndex: '1' }} x={backgroundPosition.x / parallaxStrength.ninthlevelofhellground} y={backgroundPosition.y / parallaxStrength.ninthlevelofhellground * x2y}>
                 <PFP />
             </MessageContainer>
-            <MessageContainer style={{ zIndex: '0' }} x={backgroundPosition.x / parallaxStrength.background} y={backgroundPosition.y / parallaxStrength.background * x2y}>
+            <MessageContainer style={{ zIndex: '0' }} x={backgroundPosition.x / parallaxStrength.ninthlevelofhellground} y={backgroundPosition.y / parallaxStrength.ninthlevelofhellground * x2y}>
                 <Message />
             </MessageContainer>
 
+            {displaySubApplication()}
+
             <FolderContainer>
-                <Folder folderName="Data Management" />
-                <Folder folderName="ETL Systems" />
-                <Folder folderName="Application UI" />
+                <Folder folderName={pages.page0.name} subAppID={0} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                <Folder folderName={pages.page1.name} subAppID={1} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                <Folder folderName={pages.page2.name} subAppID={2} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                <Folder folderName={pages.page3.name} subAppID={3} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                <Folder folderName={pages.page4.name} subAppID={4} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
             </FolderContainer>
 
             <PageBackgroundIMG style={{ backgroundPosition: `${backgroundPosition.x}% ${backgroundPosition.y / 100}%` }} />
@@ -92,14 +143,17 @@ const MessageContainer = styled.div<AboutMeContainerProps>`
     width: 750px;
     height: 150px;
     margin-top: 525px;
-    margin-left: calc((1920px / 2) - (500px / 2) + 10px);
+    margin-left: calc((1920px / 2) - (500px / 2) + 15px);
     transform: ${({ x, y }) => `translate(${x}%, ${y}%)`};
     z-index: 2;
 `;
 
 const FolderContainer = styled.div`
-    margin-top: 75px;
-    margin-left: 25px;
+    position: absolute;
+    top: 75px;
+    left: 25px;
+    /* margin-top: 75px;
+    margin-left: 25px; */
 `;
 
 const PageBackgroundIMG = styled.div`
@@ -151,5 +205,11 @@ const PageMidgroundIMG = styled.div<AboutMeContainerProps>`
   transform: ${({ x, y }) => `translate(${x}px, ${y}px)`}; /* Use transform instead of background-position */
   transition: transform 0.05s ease-out;
 `;
+
+interface StyledIframeProps {
+    src: string;
+    width?: string;
+    height?: string;
+}
 
 export default PageBackground;

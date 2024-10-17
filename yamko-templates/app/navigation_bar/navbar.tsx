@@ -17,7 +17,7 @@ const NavBar = () => {
   return (
     <ThemeProvider theme={isDarkMode ? themes.dark : themes.light}>
       <NavBarContainer>
-      <NavBarLink href='/'>Home</NavBarLink>
+      <NavBarLink href='/'>yammeiOS</NavBarLink>
         <NavBarLinksContainer>
             <NavBarLink href='/'>About</NavBarLink>
             <NavBarLink href='/'>Services</NavBarLink>
@@ -47,7 +47,6 @@ const NavBarContainer = styled.div`
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 `;
-
 
 const NavBarLinksContainer = styled.div`
     height: fit-content;

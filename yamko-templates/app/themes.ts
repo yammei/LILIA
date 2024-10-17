@@ -18,7 +18,7 @@ export function colorThemes() {
         dark: {
             trim:           'rgb(14, 122, 244)',
             secondaryTrim:  'rgb(0, 70, 150)',
-            background:     'rgb(25, 25, 25)',
+            background:     'rgba(25, 25, 25, .75)',
             text:           'rgb(250, 250, 250)',
             dark1TXT:       'rgb(200, 200, 200)',
             dark2TXT:       'rgb(150, 150, 150)',
