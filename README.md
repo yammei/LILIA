@@ -1,10 +1,17 @@
-<h1>YAMMEI: Personal Site</h1>
+<h1>YAMMEI: Dev Site</h1>
 
-Status: Live
-Date Deployed: 10.17.2024 | 00:30
+Accessible @ <a href='https://evlmei.dev'>https://evlmei.dev</a><br>
+Site Status: Live<br>
+Date Deployed: 10.17.2024 | 00:30<br>
+Release Notes: Beta Release<br>
+Tech Stack: Typescript | Next.js | Node.js | Docker | GCP: App Engine<br>
+Art & UI Tools:  [柊山羊@TPicrew](https://picrew.me/ja/image_maker/197705)  | [TextStudio](https://www.textstudio.com/logo/bubble-style-3d-text-155) | [Figma](https://www.figma.com/design/MeCSc6lsmZkTEV3VXK7PB9/Untitled?node-id=0-1&t=Vd3kHDi6YENZzVjr-1) | [GIMP](https://www.gimp.org/downloads/thanks.html) | [FontAwesome](https://fontawesome.com/)
 
+<h2>Most Recent Screenie</h2>
 
-<img src='https://github.com/yammei/yamko/blob/main/Screenshot%202024-10-14%20at%2014.18.36.png'/>
+<img src='https://github.com/yammei/yamko/blob/main/Screenshot%202024-10-17%20at%2000.34.19.png'/>
+
+<h2>Development Log</h2>
 
 Setting up environment.
 
@@ -52,7 +59,7 @@ Google App Engine DNS record changes.
 ```bash
 
 
-Type    Data                    Alias
+Type  Data                    Alias
 A	    216.239.32.21
 A	    216.239.34.21
 A	    216.239.36.21
