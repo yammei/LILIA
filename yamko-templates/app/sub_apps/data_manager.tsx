@@ -55,12 +55,12 @@ export const DataManager = () => {
           </BentoDish>
         </BentoBoxContainer>
 
-        {/* <BentoBoxContainer>
+        <BentoBoxContainer>
           <BentoDish VerticalScale={1.5} HorizontalScale={2}>
             <H2>Data Chart</H2>
             <Chart/>
           </BentoDish>
-        </BentoBoxContainer> */}
+        </BentoBoxContainer>
 
       </DataManagerContainer>
     </ThemeProvider>

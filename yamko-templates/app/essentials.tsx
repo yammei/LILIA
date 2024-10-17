@@ -324,7 +324,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartOptions,
 } from 'chart.js';
+import { useMemo } from 'react';
 
 ChartJS.register(
   LineElement,
@@ -337,94 +339,96 @@ ChartJS.register(
 );
 
 const generateRandomStockPrices = (numPoints: number) => {
+  console.log(`generating random stock prices`);
   return Array.from({ length: numPoints }, () => Math.floor(Math.random() * 100) + 50);
 };
 
 export const Chart: React.FC = () => {
-  const months = Array.from({ length: 20 }, (_, i) => `Month ${i + 1}`);
-  const stockPrices = generateRandomStockPrices(20);
+  // Memoize the months and stock prices so they're only computed once
+  const months = useMemo(() => Array.from({ length: 20 }, (_, i) => `Month ${i + 1}`), []);
+  const stockPrices = useMemo(() => generateRandomStockPrices(20), []);
 
-  const data = {
+  const data = useMemo(() => ({
     labels: months,
     datasets: [
       {
         label: 'Stock Price (USD)',
         data: stockPrices,
         fill: false,
-        borderColor: themes.dark.secondaryTrim,
+        borderColor: 'rgb(0, 70, 150)', // Replace themes if needed
         tension: 0.1,
-        pointBackgroundColor: themes.dark.trim,
-        pointBorderColor: themes.dark.trim,
+        pointBackgroundColor: 'rgb(14, 122, 244)', // Replace with desired color
+        pointBorderColor: 'rgb(14, 122, 244)', // Replace with desired color
       },
     ],
-  };
+  }), [months, stockPrices]);
 
-  const options = {
+  const options: ChartOptions<'line'> = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-        legend: {
-          display: true,
-          labels: {
-            color: themes.dark.dark1TXT,
-            font: {
-              size: 12,
-            },
-            boxWidth: 25,
-            boxHeight: 1,
-          },
-          position: 'top',
-        },
-        tooltip: {
-          titleFont: {
-            size: 14,
-          },
-          bodyFont: {
+      legend: {
+        display: true,
+        labels: {
+          color: '#FAFAFA',
+          font: {
             size: 12,
           },
-          callbacks: {
-            label: function (context: any) {
-              return `Price: $${context.raw}`;
-            },
+          boxWidth: 25,
+          boxHeight: 1,
+        },
+        position: 'top',
+      },
+      tooltip: {
+        titleFont: {
+          size: 14,
+        },
+        bodyFont: {
+          size: 12,
+        },
+        callbacks: {
+          label: function (context: any) {
+            return `Price: $${context.raw}`;
           },
         },
       },
+    },
     scales: {
       x: {
         title: {
-            color: themes.dark.dark1TXT,
-            display: true,
-            text: 'Date',
+          color: '#FAFAFA',
+          display: true,
+          text: 'Date',
         },
         ticks: {
-            color: themes.dark.dark2TXT,
-            font: {
-                size: 10,
-            },
+          color: '#FAFAFA',
+          font: {
+            size: 10,
+          },
         },
         grid: {
-            color: 'rgba(250, 250, 250, .25)',
+          color: 'rgba(250, 250, 250, .25)',
         },
       },
       y: {
         title: {
-            color: themes.dark.dark1TXT,
-            display: true,
-            text: 'Stock Price (USD)',
+          color: '#FAFAFA',
+          display: true,
+          text: 'Stock Price (USD)',
         },
         ticks: {
-            color: themes.dark.dark2TXT,
-            font: {
-                size: 10,
-            },
+          color: '#FAFAFA',
+          font: {
+            size: 10,
+          },
         },
         grid: {
-            color: 'rgba(250, 250, 250, .25)',
+          color: 'rgba(250, 250, 250, .25)',
         },
         beginAtZero: true,
       },
     },
-  };
+  }), []);
 
   return (
     <div style={{ width: '460px', height: '210px' }}>
