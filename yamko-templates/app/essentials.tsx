@@ -194,70 +194,60 @@ const CheckBoxActual = styled.input`
 `;
 
 export const CustomTable = () => {
+  const [commits, setCommits] = useState([]);
 
-    const [prForm, setPrForm] = useState({
-        title: '',
-        body: '',
-        head: '',
-        base: ''
-      });
-
-      const tableList = [
-        {repo: 'yamko_1', status: 'completed', version: '0.1.0'},
-        {repo: 'yamko_2', status: 'failed', version: '1.1.0'},
-        {repo: 'yamko_3', status: 'in progress', version: '2.1.0'},
-        {repo: 'yamko_4', status: 'completed', version: '3.1.0'},
-        {repo: 'yamko_5', status: 'completed', version: '4.1.0'},
-        {repo: 'yamko_6', status: 'completed', version: '5.1.0'},
-        {repo: 'yamko_7', status: 'failed', version: '6.1.0'},
-        {repo: 'yamko_8', status: 'in progress', version: '7.1.0'},
-        {repo: 'yamko_9', status: 'completed', version: '8.1.0'},
-        {repo: 'yamko_10', status: 'completed', version: '9.1.0'},
-    ];
-
-    const submitPullRequest = async () => {
-        console.log(`REACHED FUNCTION: submitPullRequest().`);
-        const response = await fetch('http://localhost:3001/pull-request', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ data: prForm }),
-        });
-        const result = await response.json();
+  useEffect(() => {
+    const fetchCommits = async () => {
+      try {
+        const response = await fetch('https://evlmei.dev/api/commits');
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        const data = await response.json();
+        setCommits(data);
+      } catch (error) {
+        console.error('Failed to fetch commits:', error);
+      }
     };
 
-    const updateTextBoxes = (event: any) => {
-        const { name, value } = event.target;
-        setPrForm((prevValues) => ({
-          ...prevValues,
-          [name]: value
-        }));
-    };
+    fetchCommits();
+  }, []);
 
-    return (
-        <Table>
-            <THead>
-                <TR style={{cursor: 'auto', backgroundColor: themes.dark.tableTitle}}>
-                    <TableSpacing/>
-                    <TH>Repository</TH>
-                    <TH>Status</TH>
-                    <TH>Version</TH>
-                </TR>
-            </THead>
-            <TBody>
-                {tableList.map((tableList, index) => (
-                    <TR key={index}>
-                        <TableSpacing/>
-                        <TD>{tableList.repo}</TD>
-                        <TD>{tableList.status}</TD>
-                        <TD>{tableList.version}</TD>
-                    </TR>
-                ))}
-            </TBody>
-        </Table>
-    );
+  return (
+    <Table>
+      <THead>
+        <TR style={{ cursor: 'auto', backgroundColor: themes.dark.tableTitle }}>
+          <TableSpacing />
+          <TH style={{ width: '75px' }}>Repository</TH>
+          <TH>Commit Message</TH>
+          <TH>Date</TH>
+          <TH style={{ width: '75px' }}>Link</TH>
+        </TR>
+      </THead>
+      <TBody>
+        {commits.map((commit, index) => (
+          <TR key={index}>
+            <TableSpacing />
+            <TD style={{ width: '75px' }}>{commit.repoName}</TD>
+            <TD>{commit.commitMessage}</TD>
+            <TD>{new Date(commit.commitDate).toLocaleString()}</TD>
+            <TD style={{ width: '75px' }}>
+              <a
+                href={`https://github.com/yammei/${commit.repoName}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'rgba(0, 154, 237, 1)', textDecoration: 'underline' }}
+              >
+                View Repo
+              </a>
+            </TD>
+          </TR>
+        ))}
+      </TBody>
+    </Table>
+  );
 };
+
 
 const Table = styled.table`
     display: block;
@@ -296,14 +286,14 @@ const TR = styled.tr`
 
 const TH = styled.th`
     color: rgb(225, 225, 225);
-    font-size: 10pt;
+    font-size: 8pt;
     text-align: left;
     width: 150px;
 `;
 
 const TD = styled.td`
     color: rgb(200, 200, 200);
-    font-size: 10pt;
+    font-size: 8pt;
     text-align: left;
     width: 150px;
 `;
@@ -344,7 +334,7 @@ export const Chart: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3050/panw');
+        const response = await fetch('https://evlmei.dev/api/panw');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

@@ -42,7 +42,7 @@ export const DataManager = () => {
             <H2>Investment Inferencing</H2>
             <p style={{color: 'rgb(225, 225, 225)', fontSize: '8pt'}}>
             An auto-regressive model for short-term predictions.<br/>
-            Currently observing: Palo Alto Networks (PANW).
+            Currently Observing: Palo Alto Networks (PANW).
             </p>
             <Chart/>
             <p style={{color: 'rgb(225, 225, 225)', fontSize: '6pt'}}>
@@ -73,9 +73,19 @@ export const DataManager = () => {
             <Link style={{fontSize: '10pt', marginBottom: '0px'}}>Forgot Username/Password?</Link>
             <Button><ButtonText>Login</ButtonText></Button>
           </BentoDish> */}
+
           <BentoDish VerticalScale={1.5} HorizontalScale={2}>
-            <H2>Process Manager (In Development)</H2>
+            <H2>Latest Repository Commits</H2>
+            <p style={{color: 'rgb(225, 225, 225)', fontSize: '8pt'}}>
+              Tracks repository commits for implemented features.<br/>
+              Currently Tracking: LILIA, ARIA, WHIRL_2.
+            </p>
             <CustomTable/>
+            <p style={{color: 'rgb(225, 225, 225)', fontSize: '6pt'}}>
+              Feature Info:<br/>
+              Requests data using GitHub API
+              <sup>[<a href='https://docs.github.com/en/rest?apiVersion=2022-11-28' target='_blank' style={{color: 'lightblue'}}>ref</a>]</sup>.
+            </p>
           </BentoDish>
         </BentoBoxContainer>
 

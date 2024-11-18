@@ -1,14 +1,28 @@
 const csvParser = require('csv-parser');
 const express = require('express');
+const https = require('https');
+const axios = require('axios');
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
+require('dotenv').config();
+
+const repos = ["LILIA", "ARIA", "WHIRL_2"];
 
 const app = express();
 const port = 3050;
+const options = {
+//  key: fs.readFileSync('/etc/letsencrypt/live/evlmei.dev/privkey.pem'),
+//  cert: fs.readFileSync('/etc/letsencrypt/live/evlmei.dev/fullchain.pem'),
+};
 
 app.use(express.json());
-app.use(cors());
+
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 
 app.get('/panw', (req, res) => {
   const filePath1 = path.join(__dirname, 'ARIA/logs/ARIMAX_actual_vs_forecast_last_10days_2mo.csv');
@@ -61,6 +75,41 @@ app.get('/panw', (req, res) => {
   });
 });
 
-app.listen(port, () => {
+app.get('/api/commits', async (req, res) => {
+  try {
+    const token = process.env.GIT_TOK;
+    const headers = token ? { Authorization: `token ${token}` } : {};
+
+    const results = await Promise.all(
+      repos.map(async (repo) => {
+        const url = `https://api.github.com/repos/yammei/${repo}/commits`;
+        const response = await axios.get(url, { headers });
+
+        const recentCommits = response.data.slice(0, 3).map((commit) => ({
+          repoName: repo,
+          commitDate: new Date(commit.commit.author.date),
+          commitMessage: commit.commit.message,
+        }));
+
+        return recentCommits;
+      })
+    );
+
+    const sortedCommits = results
+      .flat()
+      .sort((a, b) => b.commitDate - a.commitDate);
+
+    res.json(sortedCommits);
+  } catch (error) {
+    res.status(500).json({ error: error.response?.data || error.message });
+  }
+});
+
+
+app.listen(port, '127.0.0.1',() => {
   console.log(`Server running at http://localhost:${port}`);
 });
+
+// https.createServer(options, app).listen(port, ()=> {
+// console.log('Server running @ https://evlmei.dev');
+// });
