@@ -193,8 +193,14 @@ const CheckBoxActual = styled.input`
     }
 `;
 
+interface Commit {
+  repoName: string;
+  commitMessage: string;
+  commitDate: string;
+}
+
 export const CustomTable = () => {
-  const [commits, setCommits] = useState([]);
+  const [commits, setCommits] = useState<Commit[]>([]);
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -203,7 +209,7 @@ export const CustomTable = () => {
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-        const data = await response.json();
+        const data: Commit[] = await response.json();
         setCommits(data);
       } catch (error) {
         console.error('Failed to fetch commits:', error);
