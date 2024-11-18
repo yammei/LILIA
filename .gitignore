@@ -4,9 +4,3 @@ __pycache__
 .venv
 .next
 .DS_Store
-
-.env
-.venv
-.DS_Store
-__pycache__
-training_data/*
