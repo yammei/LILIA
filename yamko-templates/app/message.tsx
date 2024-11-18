@@ -17,7 +17,7 @@ export const Message = () => {
             <AboutMeTextContainer>
                 <AboutMeBox className={customFont.className}>
                     <AboutMeText>
-                        Hi! I'm Mei, a Santa Clara-Based Software Engineer.
+                        hi! i'm mei. welcome to my web-desktop!
                     </AboutMeText>
                 </AboutMeBox>
             </AboutMeTextContainer>
@@ -31,10 +31,7 @@ const AboutMeContainer = styled.div`
     flex-direction: row;
     height: fit-content;
     width: fit-content;
-    margin: auto;
-    padding: 20px;
-    /* border: 2px solid white;
-    border-radius: 10px; */
+    margin-top: 1vw;
     z-index: 999;
 `;
 
@@ -46,25 +43,25 @@ const AboutMeTextContainer = styled.div`
 `;
 
 const AboutMeBox = styled.div`
-    width: 500px;
-    margin-left: -25px;
-    padding: 15px 20px;
+    width: 27vw;
+    margin-left: 0;
+    padding: .5vw;
     background-color: rgb(181, 137, 201);
     background: linear-gradient(
         to bottom,
         #b25c8f 0%,
         #4a47a5 100%
     );
-    outline: 5px solid rgb(250, 250, 250);
-    border-radius: 999px;
-    box-shadow: 7.5px 10px 5px rgba(0, 0, 0, 0.25);
+    outline: .25vw solid rgb(250, 250, 250);
+    border-radius: 99999px;
+    box-shadow: .5vw .5vw 2.5px rgba(0, 0, 0, 0.25);
     z-index: 1;
 `;
 
 const AboutMeText = styled.p`
     color: rgb(250, 250, 250);
-    font-size: 14pt;
-    text-align: left;
+    font-size: 1.25vw;
+    text-align: center;
     height: fit-content;
     width: fit-content;
     margin: auto;

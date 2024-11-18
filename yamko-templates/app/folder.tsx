@@ -70,11 +70,11 @@ export const Folder: React.FC<FolderProps> = ({ folderName, subAppID, subAppSwit
 };
 
 const FolderContainer = styled.div`
-    scale: .75;
-    height: 150px;
-    width: 150px;;
-    margin-bottom: -25px;
-    /* background-color: red; */
+    position: relative;
+    height: fit-content;
+    width: 5vw;
+    margin-bottom: 4vw;
+    // background-color: red;
 `;
 
 const fadeOutScaleDown = keyframes`
@@ -106,15 +106,17 @@ interface FolderIMGProps {
 
 const FolderIMG = styled.div<FolderIMGProps>`
     cursor: pointer;
-    height: 100px;
-    width: auto;
+    height: auto;
+    width: 3.5vw;
     aspect-ratio: 1;
+    // background-color: cyan;
     background-image: ${({ icon }) => `url(${icon.src})`};
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 20px auto;
-    margin-bottom: 10px;
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: .25vw;
     transition: filter 0.25s ease-in-out;
 
     &:hover {
@@ -134,13 +136,15 @@ const FolderIMG = styled.div<FolderIMGProps>`
 
 
 const FolderText = styled.p`
+    position: absolute;
+    display: inline-block;
     color: rgb(250, 250, 250);
-    font-size: 14pt;
+    font-size: 1vw;
     text-align: center;
     line-height: 1.1;
-    max-height: 50px;
+    top: 3.75vw;
     height: fit-content;
-    width: 125px;
-    margin: 0px auto;
-    /* background-color: cyan; */
+    width: 5vw;
+    margin: auto;
+    // background-color: cyan;
 `;

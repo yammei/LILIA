@@ -2,7 +2,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import backgroundIMG from '@/images/clouds.png';
+import backgroundIMG from '@/images/la.jpg';
 import yammeiIMG from '@/images/yammei.png';
 import descriptionIMG from '@/images/wings.png';
 
@@ -18,22 +18,22 @@ const PageBackground = () => {
 
     const pages = {
         page0: {
-            name: 'Data Management',
+            name: 'data tools',
         },
         page1: {
-            name: 'Example Restaurant',
-            src: '/restaurant.html',
+            name: 'resume',
+            src: '/resume.html',
         },
         page2: {
-            name: 'Empty Folder',
+            name: 'empty',
             src: '/404.html',
         },
         page3: {
-            name: 'Empty Folder',
+            name: 'empty',
             src: '/404.html',
         },
         page4: {
-            name: 'Empty Folder',
+            name: 'empty',
             src: '/404.html',
         },
     };
@@ -42,30 +42,30 @@ const PageBackground = () => {
     const [backgroundPosition, setBackgroundPosition] = useState({ x: 960, y: 540 });
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const handleMouseMove = (e: MouseEvent) => {
-        const container = containerRef.current;
-        if (!container) return;
+    // const handleMouseMove = (e: MouseEvent) => {
+    //     const container = containerRef.current;
+    //     if (!container) return;
 
-        const rect = container.getBoundingClientRect();
+    //     const rect = container.getBoundingClientRect();
 
-        const xPosB = ((e.clientX - rect.left) / rect.width) * 1920;
-        const yPosB = ((e.clientY - rect.top) / rect.height) * 1080;
+    //     const xPosB = ((e.clientX - rect.left) / rect.width) * 1920;
+    //     const yPosB = ((e.clientY - rect.top) / rect.height) * 1080;
 
-        setBackgroundPosition({ x: xPosB, y: yPosB });
-    };
+    //     setBackgroundPosition({ x: xPosB, y: yPosB });
+    // };
 
-    useEffect(() => {
-        const container = containerRef.current;
-        if (container) {
-            container.addEventListener('mousemove', handleMouseMove);
-        }
+    // useEffect(() => {
+    //     const container = containerRef.current;
+    //     if (container) {
+    //         container.addEventListener('mousemove', handleMouseMove);
+    //     }
 
-        return () => {
-            if (container) {
-                container.removeEventListener('mousemove', handleMouseMove);
-            }
-        };
-    }, []);
+    //     return () => {
+    //         if (container) {
+    //             container.removeEventListener('mousemove', handleMouseMove);
+    //         }
+    //     };
+    // }, []);
 
     const x2y = 5;
     const parallaxStrength = {
@@ -99,8 +99,8 @@ const PageBackground = () => {
 
     return (
         <Container ref={containerRef}>
-            <PageForegroundIMG x={backgroundPosition.x / parallaxStrength.midground} y={backgroundPosition.y / parallaxStrength.midground * x2y} />
-            <PageMidgroundIMG x={backgroundPosition.x / parallaxStrength.foreground} y={backgroundPosition.y / 25} />
+            {/* <PageForegroundIMG x={backgroundPosition.x / parallaxStrength.midground} y={backgroundPosition.y / parallaxStrength.midground * x2y} /> */}
+            {/* <PageMidgroundIMG x={backgroundPosition.x / parallaxStrength.foreground} y={backgroundPosition.y / 25} /> */}
 
             <MessageContainer style={{ zIndex: '1' }} x={backgroundPosition.x / parallaxStrength.ninthlevelofhellground} y={backgroundPosition.y / parallaxStrength.ninthlevelofhellground * x2y}>
                 <PFP />
@@ -126,8 +126,9 @@ const PageBackground = () => {
 
 const Container = styled.div`
     position: relative;
-    width: 1920px;
-    height: 1080px;
+    height: 100vh;
+    width: 100vw;
+    min-width: 1280px;
     overflow: hidden;
 `;
 
@@ -140,70 +141,65 @@ const MessageContainer = styled.div<AboutMeContainerProps>`
     position: absolute;
     top: 0;
     left: 0;
-    width: 750px;
-    height: 150px;
-    margin-top: 525px;
-    margin-left: calc((1920px / 2) - (500px / 2) + 15px);
+    height: ${15/3}vw;
+    width: 15vw;
+    margin-top: 45vh;
+    margin-left: 38vw;
     transform: ${({ x, y }) => `translate(${x}%, ${y}%)`};
     z-index: 2;
 `;
 
 const FolderContainer = styled.div`
     position: absolute;
-    top: 75px;
-    left: 25px;
-    /* margin-top: 75px;
-    margin-left: 25px; */
+    top: 5vh;
+    left: 2vw;
+
 `;
 
 const PageBackgroundIMG = styled.div`
     position: absolute;
-    scale: 1.5;
-    top: 0;
-    left: 0;
-    width: 1920px;
-    height: 1080px;
-    margin-top: -200px;
+    scale: 1;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: #393836;
     background-image: url(${backgroundIMG.src});
     background-size: cover;
     background-repeat: no-repeat;
-    filter: brightness(0.45) blur(40px);
+    filter: brightness(.5) blur(10px);
     z-index: -1;
     transition: background-position 0.05s ease-out;
 `;
 
 const PageForegroundIMG = styled.div<AboutMeContainerProps>`
-  position: absolute;
-  scale: 1.1;
-  top: 0;
-  left: 0;
-  width: 500px;
-  height: 160px;
-  margin-top: 300px;
-  margin-left: 725px;
-  background-image: url(${yammeiIMG.src});
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: 1;
-  transform: ${({ x, y }) => `translate(${x}px, ${y}px)`}; /* Use transform instead of background-position */
-  transition: transform 0.05s ease-out;
+    position: absolute;
+    scale: 1.1;
+    height: ${20/3}vw;
+    width: 20vw;
+    margin-top: 30vh;
+    margin-left: 40vw;
+    background-image: url(${yammeiIMG.src});
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transform: ${({ x, y }) => `translate(${x}px, ${y}px)`}; /* Use transform instead of background-position */
+    transition: transform 0.05s ease-out;
 `;
 
 const PageMidgroundIMG = styled.div<AboutMeContainerProps>`
-  position: absolute;
-  scale: 1.1;
-  top: 0;
-  left: 0;
-  width: 650px;
-  height: 125px;
-  margin-top: 325px;
-  margin-left: 650px;
-  background-image: url(${descriptionIMG.src});
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: 1;
-  transform: ${({ x, y }) => `translate(${x}px, ${y}px)`}; /* Use transform instead of background-position */
-  transition: transform 0.05s ease-out;
+    position: absolute;
+    scale: 1.1;
+    height: ${25/6}vw;
+    width: 25vw;
+    margin-top: 32vh;
+    margin-left: 38vw;
+    background-image: url(${descriptionIMG.src});
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transform: ${({ x, y }) => `translate(${x}px, ${y}px)`}; /* Use transform instead of background-position */
+    transition: transform 0.05s ease-out;
 `;
 
 interface StyledIframeProps {

@@ -33,48 +33,59 @@ const Page = () => {
   };
 
   return (
-    <ThemeProvider theme={isDarkMode ? themes.dark : themes.light}>
-      <PageContainer>
-        <NavBar/>
+    <Body>
+      <ThemeProvider theme={isDarkMode ? themes.dark : themes.light}>
+        <PageContainer>
+          {/* <NavBar/> */}
 
-        {/* <BentoBoxContainer style={{display: 'none'}}>
-          <BentoDish VerticalScale={1.5} HorizontalScale={1}>
-            <H2>Login Form</H2>
-            <Input PlaceHolder='Username' Type='text'></Input>
-            <Input PlaceHolder='Password' Type='password'></Input>
-            <div style={{display: 'flex', flexDirection: 'row', marginTop: '10px'}}>
-              <CheckBox InputType='checkbox'/>
-              <Text style={{fontSize: '10pt', marginLeft: '7.5px', marginRight: 'auto'}}>Remember Me</Text>
-            </div>
-            <Link style={{fontSize: '10pt', marginBottom: '0px'}}>Forgot Username/Password?</Link>
-            <Button><ButtonText>Login</ButtonText></Button>
-          </BentoDish>
-          <BentoDish VerticalScale={1.5} HorizontalScale={2}>
-            <H2>Data Table</H2>
-            <CustomTable/>
-          </BentoDish>
-          <BentoDish VerticalScale={1.5} HorizontalScale={2}>
-            <H2>Data Chart</H2>
-            <Chart/>
-          </BentoDish>
-        </BentoBoxContainer> */}
+          {/* <BentoBoxContainer style={{display: 'none'}}>
+            <BentoDish VerticalScale={1.5} HorizontalScale={1}>
+              <H2>Login Form</H2>
+              <Input PlaceHolder='Username' Type='text'></Input>
+              <Input PlaceHolder='Password' Type='password'></Input>
+              <div style={{display: 'flex', flexDirection: 'row', marginTop: '10px'}}>
+                <CheckBox InputType='checkbox'/>
+                <Text style={{fontSize: '10pt', marginLeft: '7.5px', marginRight: 'auto'}}>Remember Me</Text>
+              </div>
+              <Link style={{fontSize: '10pt', marginBottom: '0px'}}>Forgot Username/Password?</Link>
+              <Button><ButtonText>Login</ButtonText></Button>
+            </BentoDish>
+            <BentoDish VerticalScale={1.5} HorizontalScale={2}>
+              <H2>Data Table</H2>
+              <CustomTable/>
+            </BentoDish>
+            <BentoDish VerticalScale={1.5} HorizontalScale={2}>
+              <H2>Data Chart</H2>
+              <Chart/>
+            </BentoDish>
+          </BentoBoxContainer> */}
 
-        <PageBackground/>
-      </PageContainer>
-    </ThemeProvider>
+          <PageBackground/>
+        </PageContainer>
+      </ThemeProvider>
+    </Body>
   );
 
 
 };
 
-const PageContainer = styled.div`
+const Body = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 1080px;
-  width: 1920px;
-  margin: 0px auto;
-  /* background-color: ${(props) => props.theme.background}; */
+  top: 0px;
+  height: 100vh;
+  width: 95vw;
+`;
+
+const PageContainer = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  object-fit: cover;
+  height: fit-content;
+  width: fit-content;
+  background-color: ${(props) => props.theme.background};
   overflow: hidden;
 `;
 

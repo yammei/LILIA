@@ -38,7 +38,31 @@ export const DataManager = () => {
       <DataManagerContainer className={customFont.className}>
 
         <BentoBoxContainer>
-          <BentoDish VerticalScale={1.5} HorizontalScale={1}>
+          <BentoDish VerticalScale={1.75} HorizontalScale={2}>
+            <H2>Investment Inferencing</H2>
+            <p style={{color: 'rgb(225, 225, 225)', fontSize: '8pt'}}>
+            An auto-regressive model for short-term predictions.<br/>
+            Currently observing: Palo Alto Networks (PANW).
+            </p>
+            <Chart/>
+            <p style={{color: 'rgb(225, 225, 225)', fontSize: '6pt'}}>
+              Model Info:<br/>
+              Simple ARIMAX using statsmodels library
+              <sup>[<a href='https://www.statsmodels.org/dev/examples/notebooks/generated/statespace_sarimax_faq.html' target='_blank' style={{color: 'lightblue'}}>ref</a>]</sup>.
+              Data retrieved using yfinance
+              <sup>[<a href='https://pypi.org/project/yfinance/' target='_blank' style={{color: 'lightblue'}}>ref</a>]</sup>.
+              <br/>
+              Comovement Analysis Timeframe: 120mo. | Training Data Timeframe: 2mo. <br/>
+              Exogenous Variables: High, Low, EMA-26, Trade Volume | Exog. Left-Shift: 1 day<br/>
+              Endogenous Variable: PANW Closing Price.<br/>
+              ACF (p): 1 | ADF (d): 1 | PACF (q): 1<br/>
+              MAE: 2.6135 | RMSE: 3.1307
+            </p>
+          </BentoDish>
+        </BentoBoxContainer>
+
+        <BentoBoxContainer>
+          {/* <BentoDish VerticalScale={1.5} HorizontalScale={1}>
             <H2>Login Form</H2>
             <Input PlaceHolder='Username' Type='text'></Input>
             <Input PlaceHolder='Password' Type='password'></Input>
@@ -48,24 +72,18 @@ export const DataManager = () => {
             </div>
             <Link style={{fontSize: '10pt', marginBottom: '0px'}}>Forgot Username/Password?</Link>
             <Button><ButtonText>Login</ButtonText></Button>
-          </BentoDish>
+          </BentoDish> */}
           <BentoDish VerticalScale={1.5} HorizontalScale={2}>
-            <H2>Data Table</H2>
+            <H2>Process Manager (In Development)</H2>
             <CustomTable/>
           </BentoDish>
         </BentoBoxContainer>
 
-        <BentoBoxContainer>
-          <BentoDish VerticalScale={1.5} HorizontalScale={2}>
-            <H2>Data Chart</H2>
-            <Chart/>
-          </BentoDish>
-        </BentoBoxContainer>
+
 
       </DataManagerContainer>
     </ThemeProvider>
   );
-
 
 };
 
@@ -73,20 +91,20 @@ const DataManagerContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 1080px;
-  width: 1920px;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
   margin: 0px auto;
-  background-color: ${(props) => props.theme.background};
+  // background-color: ${(props) => props.theme.background};
   border-radius: 20px;
   backdrop-filter: blur(10px);
-  overflow: hidden;
+  overflow: scroll;
   z-index: 999;
 `;
 
 const Title = styled.p`
   font-size: 25pt;
 `;
-
 
 const ProjectContainer = styled.div`
   height: 500px;

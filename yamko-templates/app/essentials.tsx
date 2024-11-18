@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
 
@@ -8,7 +8,7 @@ const themes = colorThemes();
 
 export const H2 = styled.p`
     color: ${(props) => props.theme.dark1TXT};
-    font-size: 15pt;
+    font-size: 12pt;
     margin-left: 0px;
     margin-bottom: 10px;
 `;
@@ -48,16 +48,15 @@ export const BentoBoxContainer = styled.div`
     position: relative;
     display: flex;
     flex-direction: row;
-    grid-gap: 20px;
     min-height: 250px;
     min-width: 250px;
     max-height: 500px;
     height: fit-content;
-    width: 1920px;
+    width: fit-content;
     margin: 0px auto;
-    padding: 20px;
+    padding: 0px;
     // background-color: ${(props) => props.theme.bentoBG};
-    border-radius: 20px;
+    border-radius: 10px;
     overflow: hidden;
     z-index: 999;
     overflow: hidden;
@@ -82,6 +81,7 @@ const BentoDishContainer = styled.div`
     flex-direction: column;
     min-height: 250px;
     min-width: 250px;
+    margin: 10px;
     padding: 20px;
     background-color: ${(props) => props.theme.bentoBG};
     // background-color: red;
@@ -326,7 +326,6 @@ import {
   Legend,
   ChartOptions,
 } from 'chart.js';
-import { useMemo } from 'react';
 
 ChartJS.register(
   LineElement,
@@ -338,58 +337,74 @@ ChartJS.register(
   Legend
 );
 
-const generateRandomStockPrices = (numPoints: number) => {
-  console.log(`generating random stock prices`);
-  return Array.from({ length: numPoints }, () => Math.floor(Math.random() * 100) + 50);
-};
-
 export const Chart: React.FC = () => {
-  // Memoize the months and stock prices so they're only computed once
-  const months = useMemo(() => Array.from({ length: 20 }, (_, i) => `Month ${i + 1}`), []);
-  const stockPrices = useMemo(() => generateRandomStockPrices(20), []);
+  const [chartData, setChartData] = useState<any>(null);
+  const [yAxisRange, setYAxisRange] = useState<{ min: number; max: number } | null>(null);
 
-  const data = useMemo(() => ({
-    labels: months,
-    datasets: [
-      {
-        label: 'Stock Price (USD)',
-        data: stockPrices,
-        fill: false,
-        borderColor: 'rgb(0, 70, 150)', // Replace themes if needed
-        tension: 0.1,
-        pointBackgroundColor: 'rgb(14, 122, 244)', // Replace with desired color
-        pointBorderColor: 'rgb(14, 122, 244)', // Replace with desired color
-      },
-    ],
-  }), [months, stockPrices]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3050/panw');
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data: [string, number][] = await response.json();
 
-  const options: ChartOptions<'line'> = useMemo(() => ({
+        // Transform the data for the chart
+        const labels = data.map((item) => item[0]); // Dates for x-axis
+        const prices = data.map((item) => item[1]); // Prices for y-axis
+
+        // Calculate the y-axis range (10% above and below)
+        const minPrice = Math.min(...prices);
+        const maxPrice = Math.max(...prices);
+        const rangePadding = (maxPrice - minPrice) * 0.1;
+        setYAxisRange({
+          min: minPrice - rangePadding,
+          max: maxPrice + rangePadding,
+        });
+
+        setChartData({
+          labels,
+          datasets: [
+            {
+              label: 'Closing Price (USD)',
+              data: prices,
+              borderColor: 'rgb(0, 97, 150)',
+              backgroundColor: 'rgba(0, 154, 237, 1)',
+              tension: 0.1,
+              pointRadius: 5,
+              pointHoverRadius: 6,
+              pointBackgroundColor: 'rgba(0, 154, 237, 1)',
+              pointBorderColor: 'rgb(0, 97, 150)',
+            },
+          ],
+        });
+      } catch (error) {
+        console.error('Error fetching chart data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
+  const options: ChartOptions<'line'> = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
+        position: 'top',
         labels: {
           color: '#FAFAFA',
           font: {
             size: 12,
           },
           boxWidth: 25,
-          boxHeight: 1,
         },
-        position: 'top',
       },
       tooltip: {
-        titleFont: {
-          size: 14,
-        },
-        bodyFont: {
-          size: 12,
-        },
         callbacks: {
-          label: function (context: any) {
-            return `Price: $${context.raw}`;
-          },
+          label: (context: any) => `Price: $${context.raw.toFixed(2)}`,
         },
       },
     },
@@ -414,25 +429,33 @@ export const Chart: React.FC = () => {
         title: {
           color: '#FAFAFA',
           display: true,
-          text: 'Stock Price (USD)',
+          text: 'Closing Price (USD)',
         },
         ticks: {
           color: '#FAFAFA',
           font: {
             size: 10,
           },
+          callback: function (value) {
+            return `$${parseFloat(value as string).toFixed(2)}`;
+          },
         },
         grid: {
           color: 'rgba(250, 250, 250, .25)',
         },
-        beginAtZero: true,
+        min: yAxisRange?.min,
+        max: yAxisRange?.max,
       },
     },
-  }), []);
+  };
+
+  if (!chartData) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div style={{ width: '460px', height: '210px' }}>
-      <Line data={data} options={options} />
+    <div style={{ width: '460px', height: '210px', margin: '20px auto' }}>
+      <Line data={chartData} options={options} />
     </div>
   );
 };

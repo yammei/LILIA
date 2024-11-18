@@ -16,7 +16,6 @@ interface WindowProps {
     windowName: string;
     subAppSwitcher: any;
 }
-
 export const Window: React.FC<WindowProps> = ({ children, windowName, subAppSwitcher }) => {
 
     const closeWindow = () => {
@@ -26,10 +25,10 @@ export const Window: React.FC<WindowProps> = ({ children, windowName, subAppSwit
     return (
         <div className={customFont.className} style={{position: 'relative', width: 'fit-content', margin: 'auto'}}>
             <WindowTopBarExit onClick={closeWindow}><p style={{marginLeft: '7px'}}>X</p></WindowTopBarExit>
+            <WindowTopBar>
+                <WindowTopBarTitle>⊹ ☁︎ {windowName} ☁︎ ⊹</WindowTopBarTitle>
+            </WindowTopBar>
             <WindowContainer>
-                <WindowTopBar>
-                    <WindowTopBarTitle>─── ⋆⋅ {windowName} ⋅⋆ ───</WindowTopBarTitle>
-                </WindowTopBar>
                 <WindowContent>
                     {children}
                 </WindowContent>
@@ -50,13 +49,32 @@ const WindowContainer = styled.div`
     height: fit-content;
     width: fit-content;
     margin: auto;
-    margin-top: 50px;
-    padding: 20px;
-    background-color: rgba(25, 25, 25, .75);
-    border: 5px solid white;
-    border-radius: 20px;
-    overflow: scroll;
+    margin-top: 75px;
+    padding: 0px;
+    background-color: rgba(100, 100, 100, 1);
+    border: 5px solid rgb(100, 100, 100);
+    border-radius: 0px 0px 20px 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
     z-index: 998;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: 2px solid white;
+    }
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
 `;
 
 const WindowTopBar = styled.div`
@@ -66,34 +84,39 @@ const WindowTopBar = styled.div`
     align-items: center;
     min-width: 250px;
     max-width: 1000px;
-    height: 30px;
+    height: 40px;
     width: 100%;
-    margin-top: -20px;
-    margin-left: -20px;
-    background-color: rgb(250, 250, 250);
+    margin-top: -40px;
+    border-radius: 20px 20px 0px 0;
+    border-top: 2px solid rgb(100, 100, 100);
+    border-left: 2px solid rgb(100, 100, 100);
+    border-right: 2px solid rgb(100, 100, 100);
+    border-bottom: 1px solid rgb(100, 100, 100);
+    background-color: rgb(50, 50, 50);
+    z-index: 1000;
 `;
 
 const WindowTopBarTitle = styled.p`
-    color: rgb(50, 50, 50);
+    color: rgb(250, 250, 250);
     font-size: 12pt;
-    margin-top: 2px;
+    margin-top: 5px;
 `;
 
 const WindowTopBarExit = styled.div`
-    scale: 1.1;
+    scale: .75;
     cursor: pointer;
     color: rgb(50, 50, 50);
     position: absolute;
     height: 30px;
     width: 30px;
-    top: -10px;
-    right: -10px;
+    top: -35px;
+    right: 6px;
     background-color: rgb(250, 250, 250);
     border: 2px solid rgb(25, 25, 25);
     border-radius: 999px;
     box-shadow: 2.5px 2.5px 1px rgba(25, 25, 25, .25);
     transform: rotate(20deg);
-    z-index: 999;
+    z-index: 1001;
 
     transition:
         background-color 0.1s ease-in-out,
@@ -103,7 +126,7 @@ const WindowTopBarExit = styled.div`
 
     &:hover {
         color: rgb(250, 250, 250);
-        transform: scale(1.125) rotate(110deg);
+        transform: scale(1) rotate(110deg);
         filter: brightness(1.2);
         background-color: red;
         border: 2px solid rgb(250, 250, 250);
@@ -119,7 +142,6 @@ const WindowContent = styled.div`
     max-width: 1000px;
     height: fit-content;
     width: fit-content;
-    margin-top: 30px;
 `;
 
 const AboutMeTextContainer = styled.div`
