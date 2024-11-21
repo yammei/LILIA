@@ -2,12 +2,12 @@
 
 import fopen from '@/images/FOLDER_OPENED.png';
 import fclose from '@/images/FOLDER_CLOSED.png';
-import { Cherry_Bomb_One } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
+import { Inter } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Inter
 
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
-const customFont = Cherry_Bomb_One({
+const customFont = Inter({
     weight: '400',
     subsets: ['latin'],
 });
@@ -71,9 +71,11 @@ export const Folder: React.FC<FolderProps> = ({ folderName, subAppID, subAppSwit
 
 const FolderContainer = styled.div`
     position: relative;
+    display: flex;
+    flex-direction: column;
     height: fit-content;
-    width: 5vw;
-    margin-bottom: 4vw;
+    width: 75px;
+    margin: 10px;
     // background-color: red;
 `;
 
@@ -107,7 +109,7 @@ interface FolderIMGProps {
 const FolderIMG = styled.div<FolderIMGProps>`
     cursor: pointer;
     height: auto;
-    width: 3.5vw;
+    width: 50px;
     aspect-ratio: 1;
     // background-color: cyan;
     background-image: ${({ icon }) => `url(${icon.src})`};
@@ -136,15 +138,14 @@ const FolderIMG = styled.div<FolderIMGProps>`
 
 
 const FolderText = styled.p`
-    position: absolute;
     display: inline-block;
-    color: rgb(250, 250, 250);
-    font-size: 1vw;
+    color: rgb(50, 50, 50);
+    font-size: 8pt;
     text-align: center;
     line-height: 1.1;
-    top: 3.75vw;
+    top: 50px;
     height: fit-content;
-    width: 5vw;
+    max-width: 5vw;
     margin: auto;
     // background-color: cyan;
 `;

@@ -3,10 +3,16 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
+import { Inter } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
 import { Cherry_Bomb_One } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
 import Image from 'next/image';
 
-const customFont = Cherry_Bomb_One({
+const customFont = Inter({
+    weight: '400',
+    subsets: ['latin'],
+});
+
+const customFont1 = Cherry_Bomb_One({
     weight: '400',
     subsets: ['latin'],
 });
@@ -24,9 +30,9 @@ export const Window: React.FC<WindowProps> = ({ children, windowName, subAppSwit
 
     return (
         <div className={customFont.className} style={{position: 'relative', width: 'fit-content', margin: 'auto'}}>
-            <WindowTopBarExit onClick={closeWindow}><p style={{marginLeft: '7px'}}>X</p></WindowTopBarExit>
+            <WindowTopBarExit className={customFont1.className} onClick={closeWindow}><p style={{marginLeft: '7px'}}>X</p></WindowTopBarExit>
             <WindowTopBar>
-                <WindowTopBarTitle>⊹ ☁︎ {windowName} ☁︎ ⊹</WindowTopBarTitle>
+                <WindowTopBarTitle>{windowName}</WindowTopBarTitle>
             </WindowTopBar>
             <WindowContainer>
                 <WindowContent>
@@ -49,10 +55,10 @@ const WindowContainer = styled.div`
     height: fit-content;
     width: fit-content;
     margin: auto;
-    margin-top: 75px;
+    margin-top: 60px;
     padding: 0px;
-    background-color: rgba(100, 100, 100, 1);
-    border: 5px solid rgb(100, 100, 100);
+    background-color: rgba(250, 250, 250, 1);
+    border: 5px solid rgb(250, 250, 250);
     border-radius: 0px 0px 20px 20px;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -88,18 +94,19 @@ const WindowTopBar = styled.div`
     width: 100%;
     margin-top: -40px;
     border-radius: 20px 20px 0px 0;
-    border-top: 2px solid rgb(100, 100, 100);
-    border-left: 2px solid rgb(100, 100, 100);
-    border-right: 2px solid rgb(100, 100, 100);
-    border-bottom: 1px solid rgb(100, 100, 100);
+    border-top: 2px solid rgb(250, 250, 250);
+    border-left: 2px solid rgb(250, 250, 250);
+    border-right: 2px solid rgb(250, 250, 250);
+    border-bottom: 1px solid rgb(250, 250, 250);
     background-color: rgb(50, 50, 50);
     z-index: 1000;
 `;
 
 const WindowTopBarTitle = styled.p`
     color: rgb(250, 250, 250);
-    font-size: 12pt;
-    margin-top: 5px;
+    font-size: 10pt;
+    font-weight: 600;
+    margin: auto;
 `;
 
 const WindowTopBarExit = styled.div`
@@ -112,9 +119,8 @@ const WindowTopBarExit = styled.div`
     top: -35px;
     right: 6px;
     background-color: rgb(250, 250, 250);
-    border: 2px solid rgb(25, 25, 25);
+    border: 2px solid rgb(250, 250, 250);
     border-radius: 999px;
-    box-shadow: 2.5px 2.5px 1px rgba(25, 25, 25, .25);
     transform: rotate(20deg);
     z-index: 1001;
 

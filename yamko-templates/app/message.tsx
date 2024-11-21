@@ -3,67 +3,87 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
-import { Cherry_Bomb_One } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
-import Image from 'next/image';
+import { Inter } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
+import mei from '@/images/mei_anim.png';
 
-const customFont = Cherry_Bomb_One({
+
+const customFont = Inter({
     weight: '400',
     subsets: ['latin'],
 });
 
 export const Message = () => {
     return (
-        <AboutMeContainer>
-            <AboutMeTextContainer>
-                <AboutMeBox className={customFont.className}>
-                    <AboutMeText>
-                        hi! i'm mei. welcome to my web-desktop!
-                    </AboutMeText>
-                </AboutMeBox>
-            </AboutMeTextContainer>
+        <AboutMeContainer className={customFont.className}>
+            <ProfilePicture/>
+            <ProfileStatus>
+                <p style={{fontSize: '10pt', margin: 'auto'}}>💻</p>
+            </ProfileStatus>
+            <AboutMeText>
+                Hello! I'm <b>Mei Zhang</b>.
+            </AboutMeText>
+            <DescriptionText>
+                Full-Stack Engineer | Santa Clara, CA<br></br>
+                <a style={{color: 'rgb(12, 76, 215)'}} href="mailto:meizhang.dev@gmail.com">meizhang.dev@gmail.com</a><br></br>
+                CS B.Sc. @ CSUS 23'
+            </DescriptionText>
         </AboutMeContainer>
     );
 };
 
 const AboutMeContainer = styled.div`
-    position: absolute;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    min-height: 250px;
     height: fit-content;
-    width: fit-content;
-    margin-top: 1vw;
-    z-index: 999;
+    width: 450px;
+    padding: 20px;
+    background-color: rgb(250, 250, 250);
+    border-radius: 20px;
+    // box-shadow: 5px 10px 1px rgba(0, 0, 0, 0.25);
+    z-index: 1;
 `;
 
-const AboutMeTextContainer = styled.div`
-    position: relative;
+const ProfilePicture = styled.div`
+    width: 75px;
+    height: 75px;
+    margin: 10px auto;
+    background-color: rgb(255, 204, 0);
+    background-image: url(${mei.src});
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 999px;
+    overflow: hidden;
+`;
+const ProfileStatus = styled.div`
     display: flex;
-    flex-direction: row;
-    z-index: 1;
-`;
-
-const AboutMeBox = styled.div`
-    width: 27vw;
-    margin-left: 0;
-    padding: .5vw;
-    background-color: rgb(181, 137, 201);
-    background: linear-gradient(
-        to bottom,
-        #b25c8f 0%,
-        #4a47a5 100%
-    );
-    outline: .25vw solid rgb(250, 250, 250);
-    border-radius: 99999px;
-    box-shadow: .5vw .5vw 2.5px rgba(0, 0, 0, 0.25);
-    z-index: 1;
+    height: 30px;
+    width: 30px;
+    margin-top: -${30 + 8}px;
+    margin-right: -${(75/2) + (30/2)}px;
+    margin-bottom: 10px;
+    background-color: rgb(240, 240, 240);
+    border: 2px solid rgb(250, 250, 250);
+    border-radius: 999px;
+    overflow: hidden;
 `;
 
 const AboutMeText = styled.p`
-    color: rgb(250, 250, 250);
-    font-size: 1.25vw;
+    color: rgb(25, 25, 25);
+    font-size: 15pt;
     text-align: center;
     height: fit-content;
     width: fit-content;
-    margin: auto;
-    /* background-color: red; */
+    margin: 10px auto;
+`;
+
+const DescriptionText = styled.p`
+    color: rgb(50, 50, 50);
+    font-size: 10pt;
+    text-align: center;
+    height: fit-content;
+    width: fit-content;
+    margin: 10px auto;
+    margin-top: 0px;
 `;
