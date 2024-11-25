@@ -52,7 +52,7 @@ const BackgroundImage = styled.div`
   background-image: url(${background.src});
   background-size: cover;
   background-repeat: no-repeat;
-  filter: brightness(1) sepia(1) contrast(.75) hue-rotate(180deg) blur(30px);
+  filter: brightness(1) sepia(1) contrast(.75) hue-rotate(170deg) blur(30px);
   z-index: -1;
 `;
 

@@ -119,7 +119,7 @@ const FolderIMG = styled.div<FolderIMGProps>`
     margin: auto;
     margin-top: 0px;
     margin-bottom: .25vw;
-    filter: brightness(2.65) sepia(1) hue-rotate(180deg) saturate(1.65);
+    filter: brightness(2.75) sepia(1) hue-rotate(180deg) saturate(1.65);
     transition: filter 0.15s ease-in-out, scale 0.15s ease-in-out;
 
     &:hover {
