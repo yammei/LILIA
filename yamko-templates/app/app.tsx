@@ -14,18 +14,18 @@ const App = () => {
 
     const pages = {
         page0: {
-            name: 'Backend',
+            name: 'backend',
         },
         page1: {
-            name: 'Frontend',
+            name: 'frontend',
             src: '/frontend.html',
         },
         page2: {
-            name: 'Resume',
+            name: 'resume',
             src: '/resume.html',
         },
         page3: {
-            name: 'Contacts',
+            name: 'contacts',
             src: '/contacts.html',
         },
         page4: {
@@ -58,25 +58,41 @@ const App = () => {
         }
     };
 
+    useEffect(() => {
+        const handlePageLoad = () => {
+          console.log('Page fully loaded!');
+        };
+        setActiveWindow(1);
+
+        window.addEventListener('load', handlePageLoad);
+            return () => {
+          window.removeEventListener('load', handlePageLoad);
+        };
+      }, [setActiveWindow]);
+
     return (
         <Container ref={containerRef}>
+            
+            <Column1>
+                <MessageContainer style={{ zIndex: '1' }}>
+                    <Message />
+                </MessageContainer>
 
-            <MessageContainer style={{ zIndex: '1' }}>
-                <Message />
-            </MessageContainer>
+                <FolderContainer>
+                    <FolderOrganizer>
+                        <Folder folderName={pages.page0.name} subAppID={0} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                        <Folder folderName={pages.page1.name} subAppID={1} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                        <Folder folderName={pages.page2.name} subAppID={2} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                        <Folder folderName={pages.page3.name} subAppID={3} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                    </FolderOrganizer>
+                </FolderContainer>
+            </Column1>
 
-            <FolderContainer>
-                <FolderOrganizer>
-                    <Folder folderName={pages.page0.name} subAppID={0} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                    <Folder folderName={pages.page1.name} subAppID={1} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                    <Folder folderName={pages.page2.name} subAppID={2} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                    <Folder folderName={pages.page3.name} subAppID={3} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                </FolderOrganizer>
-            </FolderContainer>
-
-            <SubApplicationContainer>
-                {displaySubApplication()}
-            </SubApplicationContainer>
+            <Column2>
+                <SubApplicationContainer>
+                    {displaySubApplication()}
+                </SubApplicationContainer>
+            </Column2>
 
             <div style={{height: '100px'}}></div>
         </Container>
@@ -86,10 +102,10 @@ const App = () => {
 const Container = styled.div`
     position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: row;
-    height: 100%;
-    width: fit-content;
+    flex-direction: row;
+    height: fit-content;
+    width: 1000px;
+    // background-color: yellow;
 `;
 
 const MessageContainer = styled.div`
@@ -97,6 +113,7 @@ const MessageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 10px auto;
+    margin-top: 40px;
     z-index: 1;
 `;
 
@@ -104,12 +121,12 @@ const FolderContainer = styled.div`
     display: flex;
     align-items: center;
     height: fit-content;
-    width: 450px;
-    margin: 10px auto;
-    padding: 20px;
+    width: 400px;
+    margin: 5px auto;
+    padding: 10px;
     background-color: rgb(250, 250, 250);
-    border-radius: 20px;
-    // box-shadow: 5px 10px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 40px;
+    box-shadow: 5px 7.5px 1px rgba(0, 0, 0, 0.1);
     z-index: 1;
 `;
 
@@ -123,7 +140,28 @@ const FolderOrganizer = styled.div`
 `;
 
 const SubApplicationContainer = styled.div`
+    margin-top: 40px;
     z-index: 999;
+`;
+
+const Column1 = styled.div`
+    display: flex;
+    top: 200px;
+    left: 200px;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+    margin: 20px;
+    // background-color: red;
+`;
+
+const Column2 = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+    margin: 20px;
+    // background-color: cyan;
 `;
 
 export default App;

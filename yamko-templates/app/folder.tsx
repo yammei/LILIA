@@ -74,7 +74,7 @@ const FolderContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: fit-content;
-    width: 75px;
+    width: 60px;
     margin: 10px;
     // background-color: red;
 `;
@@ -109,7 +109,7 @@ interface FolderIMGProps {
 const FolderIMG = styled.div<FolderIMGProps>`
     cursor: pointer;
     height: auto;
-    width: 50px;
+    width: 40px;
     aspect-ratio: 1;
     // background-color: cyan;
     background-image: ${({ icon }) => `url(${icon.src})`};
@@ -119,10 +119,12 @@ const FolderIMG = styled.div<FolderIMGProps>`
     margin: auto;
     margin-top: 0px;
     margin-bottom: .25vw;
-    transition: filter 0.25s ease-in-out;
+    filter: brightness(2.65) sepia(1) hue-rotate(180deg) saturate(1.65);
+    transition: filter 0.15s ease-in-out, scale 0.15s ease-in-out;
 
     &:hover {
-        filter: brightness(1.2);
+        scale: 1.05;
+        filter: brightness(2.45) sepia(1) hue-rotate(180deg) saturate(1.5);
     }
 
     ${({ isTransitioning }) =>
@@ -139,7 +141,7 @@ const FolderIMG = styled.div<FolderIMGProps>`
 
 const FolderText = styled.p`
     display: inline-block;
-    color: rgb(50, 50, 50);
+    color: rgb(75, 75, 75);
     font-size: 8pt;
     text-align: center;
     line-height: 1.1;

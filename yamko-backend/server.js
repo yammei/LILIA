@@ -24,7 +24,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-app.get('api/panw', (req, res) => {
+app.get('/api/panw', (req, res) => {
   const filePath1 = path.join(__dirname, 'ARIA/logs/ARIMAX_actual_vs_forecast_last_10days_2mo.csv');
   const filePath2 = path.join(__dirname, 'ARIA/logs/ARIMAX_3day_forecast_2mo.csv');
 

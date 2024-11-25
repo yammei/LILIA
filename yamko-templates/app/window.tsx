@@ -29,11 +29,29 @@ export const Window: React.FC<WindowProps> = ({ children, windowName, subAppSwit
     };
 
     return (
-        <div className={customFont.className} style={{position: 'relative', width: 'fit-content', margin: 'auto'}}>
-            <WindowTopBarExit className={customFont1.className} onClick={closeWindow}><p style={{marginLeft: '7px'}}>X</p></WindowTopBarExit>
+        <div className={customFont.className} 
+            style={{
+                position: 'relative',   
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                height: 'fit-content',
+                width: 'fit-content',
+                overflow: 'hidden',
+                borderRadius: '40px',
+                boxShadow: '5px 7.5px 1px rgba(0, 0, 0, 0.1)',
+                // backgroundColor: 'red',
+            }}
+        >
             <WindowTopBar>
-                <WindowTopBarTitle>{windowName}</WindowTopBarTitle>
+                <WindowTopBarTitle className={customFont.className}>
+                    <span style={{display: 'inline-block', marginLeft: 'auto', marginRight: '10px', fontSize: '10pt', color: 'rgb(100, 100, 100)'}}>˖⊹｡˚ </span>
+                    {windowName}
+                    <span style={{display: 'inline-block', marginLeft: '10px', marginRight: 'auto', fontSize: '10pt', color: 'rgb(100, 100, 100)'}}> ˚｡⊹˖</span> 
+                </WindowTopBarTitle>
+                <WindowTopBarExit className={customFont1.className} onClick={closeWindow}><p style={{marginLeft: '7px'}}>X</p></WindowTopBarExit>
             </WindowTopBar>
+
             <WindowContainer>
                 <WindowContent>
                     {children}
@@ -54,17 +72,17 @@ const WindowContainer = styled.div`
     max-width: 1000px;
     height: fit-content;
     width: fit-content;
-    margin: auto;
-    margin-top: 60px;
     padding: 0px;
     background-color: rgba(250, 250, 250, 1);
-    border: 5px solid rgb(250, 250, 250);
-    border-radius: 0px 0px 20px 20px;
+    // border: 5px solid rgb(250, 250, 250);
+    // box-shadow: ;
+    border-radius: 0px 0px 40px 40px;
     overflow-x: hidden;
     overflow-y: scroll;
     z-index: 998;
 
     &::-webkit-scrollbar {
+        height: 50px;
         width: 10px;
     }
 
@@ -73,69 +91,83 @@ const WindowContainer = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, .25);
     border-radius: 10px;
     border: 2px solid white;
     }
 
     /* Firefox */
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, .5) rgba(0, 0, 0, 0);
+    scrollbar-color: rgb(200, 200, 200) rgba(0, 0, 0, 0);
 `;
 
 const WindowTopBar = styled.div`
-    position: absolute;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     min-width: 250px;
     max-width: 1000px;
-    height: 40px;
+    height: 50px;
     width: 100%;
-    margin-top: -40px;
-    border-radius: 20px 20px 0px 0;
-    border-top: 2px solid rgb(250, 250, 250);
-    border-left: 2px solid rgb(250, 250, 250);
-    border-right: 2px solid rgb(250, 250, 250);
-    border-bottom: 1px solid rgb(250, 250, 250);
-    background-color: rgb(50, 50, 50);
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 40px 40px 0px 0px;
+    // border: 2px solid rgb(119, 163, 217);
+    // border-top: 2px solid rgb(250, 250, 250);
+    // border-left: 2px solid rgb(250, 250, 250);
+    // border-right: 2px solid rgb(250, 250, 250);
+    // border-bottom: 2px solid rgb(50, 50, 50);
+    background-color: rgb(250, 250, 250);
+    box-shadow: 0px 3px 5px rgba(250, 250, 250, 1);
+    overflow: hidden;
     z-index: 1000;
 `;
 
 const WindowTopBarTitle = styled.p`
-    color: rgb(250, 250, 250);
+    display: inline-block;
+    color: rgb(100, 100, 100);
     font-size: 10pt;
     font-weight: 600;
     margin: auto;
+    padding: 3px 20px;
+    // background-color: rgb(119, 163, 217);
+    border-radius: 999px;
 `;
 
 const WindowTopBarExit = styled.div`
-    scale: .75;
+    scale: .5;
     cursor: pointer;
-    color: rgb(50, 50, 50);
+    color: rgb(200, 200, 200);
     position: absolute;
     height: 30px;
     width: 30px;
-    top: -35px;
-    right: 6px;
-    background-color: rgb(250, 250, 250);
-    border: 2px solid rgb(250, 250, 250);
+    top: 12px;
+    right: 15px;
+    background-color: rgb(200, 200, 200);
+    border: 2px solid rgb(200, 200, 200);
+    box-shadow: inset 1px 1px 1px rgba(0, 0, 0, .25);
     border-radius: 999px;
-    transform: rotate(20deg);
+    transform: rotate(0deg);
     z-index: 1001;
 
     transition:
         background-color 0.1s ease-in-out,
         filter 0.25s ease-in-out,
         transform 0.25s ease-in-out,
-        border 0.1s ease-in-out;
+        border 0.1s ease-in-out,
+        scale .15s ease-in-out
+    ;
 
     &:hover {
+        scale: .75;
         color: rgb(250, 250, 250);
-        transform: scale(1) rotate(110deg);
+        transform: scale(1) rotate(90deg);
         filter: brightness(1.2);
-        background-color: red;
+        background-color: #dc4760;
         border: 2px solid rgb(250, 250, 250);
+        box-shadow: none;
+
     }
 `;
 
