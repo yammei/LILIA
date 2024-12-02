@@ -7,6 +7,8 @@ import { colorThemes } from './themes';
 // Components
 import NavBar from './navigation_bar/navbar';
 import App from './app';
+import { Banner } from './banner'
+
 import background from '@/images/grad.jpg';
 
 const themes = colorThemes();
@@ -22,6 +24,7 @@ const Page = () => {
   return (
     <Body>
       <NavBar/>
+      <Banner/>
       <App/>
       <BackgroundImage/>
     </Body>
@@ -37,9 +40,11 @@ const Body = styled.div`
   flex-direction: column;
   align-items: center;
   height: fit-content;
-  width: 100vw;
+  width: fit-content;
+  margin: auto;
   // background-color: rgb(225, 225, 225);
   background-color: transparent; 
+  // background-color: red;
 `;
 const BackgroundImage = styled.div`
   position: fixed;

@@ -20,7 +20,7 @@ export const Message = () => {
                 <p style={{fontSize: '10pt', margin: 'auto'}}>🌙</p>
             </ProfileStatus>
             <AboutMeText>
-                hi, i'm <b>mei</b>.
+                hi, i'm <b>may</b>.
             </AboutMeText>
             <DescriptionText>
                 Full-Stack Engineer | Santa Clara, CA<br></br>

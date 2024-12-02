@@ -105,6 +105,7 @@ const Container = styled.div`
     flex-direction: row;
     height: fit-content;
     width: 1000px;
+    margin: 20px auto;
     // background-color: yellow;
 `;
 
@@ -113,7 +114,7 @@ const MessageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 10px auto;
-    margin-top: 40px;
+    margin-top: 0px;
     z-index: 1;
 `;
 
@@ -140,28 +141,28 @@ const FolderOrganizer = styled.div`
 `;
 
 const SubApplicationContainer = styled.div`
-    margin-top: 40px;
     z-index: 999;
 `;
 
 const Column1 = styled.div`
     display: flex;
-    top: 200px;
-    left: 200px;
+    // top: 200px;
+    // left: 200px;
     flex-direction: column;
     height: fit-content;
     width: fit-content;
-    margin: 20px;
     // background-color: red;
+    border-radius: 50px;
 `;
 
 const Column2 = styled.div`
+    flex: 1;
     display: flex;
     flex-direction: column;
     height: fit-content;
-    width: fit-content;
-    margin: 20px;
+    align-items: center;
     // background-color: cyan;
+    border-radius: 50px;
 `;
 
 export default App;
