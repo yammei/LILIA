@@ -1,34 +1,52 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { colorThemes } from './themes';
 
 // Components
 import NavBar from './navigation_bar/navbar';
 import App from './app';
-import { Banner } from './banner'
+import { Banner } from './banner';
+import { Footer } from './footer';
+import Loading from './loading';
 
 import background from '@/images/grad.jpg';
 
-const themes = colorThemes();
-
 const Page = () => {
 
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  useEffect(() => {
+    const handleLoad = () => setIsLoading(false);
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+    }
+
+    return () => window.removeEventListener('load', handleLoad);
+  }, []);
+
+
+  if (isLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <Loading></Loading>
+      </div>
+    );
+  }
 
   return (
-    <Body>
-      <NavBar/>
-      <Banner/>
-      <App/>
-      <BackgroundImage/>
-    </Body>
-
+    <div>
+      <Body>
+        <NavBar/>
+        <Banner/>
+        <App/>
+        <BackgroundImage/>
+      </Body>
+      <Footer/>
+    </div>
   );
 
 

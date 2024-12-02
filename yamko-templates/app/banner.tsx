@@ -16,6 +16,7 @@ export const Banner = () => {
 };
 
 const BannerContainer = styled.div`
+    cursor: pointer;
     width: 100%;
     height: auto;
     margin-top: 70px;
@@ -24,7 +25,12 @@ const BannerContainer = styled.div`
     margin-right: auto;
     background-color: red;
     border-radius: 40px;
+    box-shadow: 5px 7.5px 1px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+
+    &:hover {
+        filter: brightness(.95);
+    }
 `;
 
 const BannerIMG = styled.div`

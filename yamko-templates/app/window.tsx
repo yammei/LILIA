@@ -36,11 +36,12 @@ export const Window: React.FC<WindowProps> = ({ children, windowName, subAppSwit
                 flexDirection: 'column',
                 alignItems: 'center',
                 height: 'fit-content',
-                width: 'fit-content',
-                overflow: 'hidden',
+                width: '100%',
+                margin: '0px auto',
                 borderRadius: '40px',
                 boxShadow: '5px 7.5px 1px rgba(0, 0, 0, 0.1)',
                 // backgroundColor: 'red',
+                overflow: 'hidden',
             }}
         >
             <WindowTopBar>
@@ -71,7 +72,7 @@ const WindowContainer = styled.div`
     max-height: 800px;
     max-width: 1000px;
     height: fit-content;
-    width: fit-content;
+    width: 100%;
     padding: 0px;
     background-color: rgba(250, 250, 250, 1);
     // border: 5px solid rgb(250, 250, 250);
@@ -180,6 +181,7 @@ const WindowContent = styled.div`
     max-width: 1000px;
     height: fit-content;
     width: fit-content;
+    margin: 0px auto;
 `;
 
 const AboutMeTextContainer = styled.div`

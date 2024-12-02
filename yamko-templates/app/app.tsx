@@ -124,9 +124,10 @@ const FolderContainer = styled.div`
     height: fit-content;
     width: 400px;
     margin: 5px auto;
-    padding: 10px;
+    margin-top: 10px;
+    padding: 5px;
     background-color: rgb(250, 250, 250);
-    border-radius: 40px;
+    border-radius: 10px 10px 40px 40px;
     box-shadow: 5px 7.5px 1px rgba(0, 0, 0, 0.1);
     z-index: 1;
 `;
@@ -141,6 +142,8 @@ const FolderOrganizer = styled.div`
 `;
 
 const SubApplicationContainer = styled.div`
+    width: calc(100% - 40px);
+    margin-left: 40px;
     z-index: 999;
 `;
 
@@ -159,8 +162,8 @@ const Column2 = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    height: fit-content;
     align-items: center;
+    height: fit-content;
     // background-color: cyan;
     border-radius: 50px;
 `;
