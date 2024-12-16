@@ -73,10 +73,10 @@ const App = () => {
     return (
         <Container ref={containerRef}>
             
-            <Column1>
-                <MessageContainer style={{ zIndex: '1' }}>
+            <Row1>
+                {/* <MessageContainer style={{ zIndex: '1' }}>
                     <Message />
-                </MessageContainer>
+                </MessageContainer> */}
 
                 <FolderContainer>
                     <FolderOrganizer>
@@ -86,13 +86,13 @@ const App = () => {
                         <Folder folderName={pages.page3.name} subAppID={3} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
                     </FolderOrganizer>
                 </FolderContainer>
-            </Column1>
+            </Row1>
 
-            <Column2>
+            <Row2>
                 <SubApplicationContainer>
                     {displaySubApplication()}
                 </SubApplicationContainer>
-            </Column2>
+            </Row2>
 
             <div style={{height: '100px'}}></div>
         </Container>
@@ -102,10 +102,12 @@ const App = () => {
 const Container = styled.div`
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     height: fit-content;
     width: 1000px;
     margin: 20px auto;
+    margin-top: 50px;
     // background-color: yellow;
 `;
 
@@ -126,7 +128,7 @@ const FolderContainer = styled.div`
     margin: 5px auto;
     margin-top: 10px;
     padding: 5px;
-    background-color: rgb(250, 250, 250);
+    // background-color: rgb(250, 250, 250);
     border-radius: 10px 10px 40px 40px;
     box-shadow: 5px 7.5px 1px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -147,18 +149,18 @@ const SubApplicationContainer = styled.div`
     z-index: 999;
 `;
 
-const Column1 = styled.div`
+const Row1 = styled.div`
     display: flex;
     // top: 200px;
     // left: 200px;
     flex-direction: column;
     height: fit-content;
     width: fit-content;
-    // background-color: red;
+    background-color: red;
     border-radius: 50px;
 `;
 
-const Column2 = styled.div`
+const Row2 = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;

@@ -50,7 +50,6 @@ export const Window: React.FC<WindowProps> = ({ children, windowName, subAppSwit
                     {windowName}
                     <span style={{display: 'inline-block', marginLeft: '10px', marginRight: 'auto', fontSize: '10pt', color: 'rgb(100, 100, 100)'}}> ˚｡⊹˖</span> 
                 </WindowTopBarTitle>
-                <WindowTopBarExit className={customFont1.className} onClick={closeWindow}><p style={{marginLeft: '7px'}}>X</p></WindowTopBarExit>
             </WindowTopBar>
 
             <WindowContainer>
@@ -74,7 +73,7 @@ const WindowContainer = styled.div`
     height: fit-content;
     width: 100%;
     padding: 0px;
-    background-color: rgba(250, 250, 250, 1);
+    // background-color: rgba(250, 250, 250, 1);
     // border: 5px solid rgb(250, 250, 250);
     // box-shadow: ;
     border-radius: 0px 0px 40px 40px;
@@ -119,8 +118,8 @@ const WindowTopBar = styled.div`
     // border-left: 2px solid rgb(250, 250, 250);
     // border-right: 2px solid rgb(250, 250, 250);
     // border-bottom: 2px solid rgb(50, 50, 50);
-    background-color: rgb(250, 250, 250);
-    box-shadow: 0px 3px 5px rgba(250, 250, 250, 1);
+    // background-color: rgb(250, 250, 250);
+    // box-shadow: 0px 3px 5px rgba(250, 250, 250, 1);
     overflow: hidden;
     z-index: 1000;
 `;
@@ -168,7 +167,6 @@ const WindowTopBarExit = styled.div`
         background-color: #dc4760;
         border: 2px solid rgb(250, 250, 250);
         box-shadow: none;
-
     }
 `;
 

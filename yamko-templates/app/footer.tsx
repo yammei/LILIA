@@ -14,8 +14,8 @@ export const Footer = () => {
             <FooterContent>
                 <Column1>
                     <BusinessCard>
-                        <p style={{display: 'inline-block', color: 'rgb(250, 250, 250)', fontSize: '12pt', marginTop: '25px', marginBottom: '-10px'}}>Mei (<b>May</b>) Zhang</p><br/>
-                        <p style={{display: 'inline-block', color: 'rgb(225, 225, 225)', fontSize: '8pt', margin: '-12.5px 0px'}}>Software Engineer - Santa Clara, CA, USA</p><br/>
+                        <p style={{display: 'inline-block', color: 'rgb(250, 250, 250)', fontSize: '12pt', marginTop: '25px', marginBottom: '-10px'}}><b>May Zhang</b></p><br/>
+                        <p style={{display: 'inline-block', color: 'rgb(225, 225, 225)', fontSize: '8pt', margin: '-12.5px 0px'}}>Software Developer - San Francisco, CA</p><br/>
                         <a style={{display: 'inline-block', color: 'rgb(82, 137, 255)', fontSize: '8pt', margin: '-12.5px 0px'}} href="mailto:meizhang.dev@gmail.com">meizhang.dev@gmail.com</a><br></br>
                     </BusinessCard>
                     <div style={{marginLeft: 'auto'}}></div>
@@ -23,20 +23,18 @@ export const Footer = () => {
                 <Column2>
                     <div style={{marginRight: 'auto'}}></div>
                     <Links>
-                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Personal (In Dev.)</LinkText>
-                        <LinkText>Blog</LinkText>
+                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Personal</LinkText>
                         <LinkText>YouTube</LinkText>
                         <LinkText>Discord</LinkText>
                     </Links>
                     <Links>
-                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Professional (In Dev.)</LinkText>
-                        <LinkText>My Services</LinkText>
-                        <LinkText>Contact Me</LinkText>
+                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Professional</LinkText>
+                        <LinkText>LinkedIn</LinkText>
                         <LinkText>Schedule Call</LinkText>
                     </Links>
                 </Column2>
             </FooterContent>
-            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Developed using Next.js | Hosted on Google Cloud Platform: Compute Engine | Last Updated: 12/2/2024</p><br/>
+            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Developed using Next.js | Hosted on GCP Compute Engine | Last Updated: 12/2/2024</p><br/>
         </FooterContainer>
     );
 };

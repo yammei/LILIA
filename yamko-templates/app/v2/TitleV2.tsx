@@ -6,6 +6,7 @@ import { Syne_Mono } from '@next/font/google';
 import { Text } from '../essentials';
 import { TypedV2 } from './TypedV2';
 
+
 const customFont = Syne_Mono({
     weight: '400',
     subsets: ['latin'],
@@ -25,7 +26,6 @@ export const TitleV2 = () => {
                 <Text2>mei_os loaded ...</Text2>
                 <Text1>hi im may</Text1>
                 <Text2>who are you?</Text2>
-                <TypedV2 texts={texts}/>
             </TextContainer>
         </TitleContainer>
     );
@@ -39,8 +39,7 @@ const TitleContainer = styled.div`
     align-items: center;
     height: calc(100vw * (1080 / 1920));
     width: 100vw;
-    mix-blend-mode: difference;
-    background-color: red;
+    mix-blend-mode: exclusion;
     z-index: 2;
 `;
 const TextContainer = styled.div`
@@ -49,10 +48,10 @@ const TextContainer = styled.div`
     margin: auto;
 `;
 const Text1 = styled.p`
-    color: rgb(250, 250, 250);
+    color: rgb(26, 36, 35);
     font-size: 45pt;
 `;
 const Text2 = styled.p`
     color: rgb(250, 250, 250);
-    font-size: 25pt;
+    font-size: 20pt;
 `;

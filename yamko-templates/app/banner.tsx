@@ -23,7 +23,6 @@ const BannerContainer = styled.div`
     margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    background-color: red;
     border-radius: 40px;
     box-shadow: 5px 7.5px 1px rgba(0, 0, 0, 0.1);
     overflow: hidden;
