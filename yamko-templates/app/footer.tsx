@@ -47,7 +47,7 @@ const FooterContainer = styled.div`
     align-items: center;
     height: fit-content;    
     width: 100%;
-    margin-top: 50px;
+    margin-top: 00px;
     padding: 50px 0px;
     background-color: rgb(25, 25, 25);
 `;
