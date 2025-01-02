@@ -3,11 +3,11 @@
 import React, { useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
-import { Inter } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
+import { Silkscreen } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
 import { Cherry_Bomb_One } from '@next/font/google'; // Good Font List: Poppins, Baloo_2, Cherry_Bomb_One
 import Image from 'next/image';
 
-const customFont = Inter({
+const customFont = Silkscreen({
     weight: '400',
     subsets: ['latin'],
 });
@@ -36,19 +36,18 @@ export const Window: React.FC<WindowProps> = ({ children, windowName, subAppSwit
                 flexDirection: 'column',
                 alignItems: 'center',
                 height: 'fit-content',
-                width: '100%',
+                width: 'fit-content',
                 margin: '0px auto',
-                borderRadius: '40px',
-                boxShadow: '5px 7.5px 1px rgba(0, 0, 0, 0.1)',
-                // backgroundColor: 'red',
+                borderRadius: '0px',
+                // backgroundColor: 'green',
                 overflow: 'hidden',
             }}
         >
             <WindowTopBar>
                 <WindowTopBarTitle className={customFont.className}>
-                    <span style={{display: 'inline-block', marginLeft: 'auto', marginRight: '10px', fontSize: '10pt', color: 'rgb(100, 100, 100)'}}>˖⊹｡˚ </span>
+                    <span style={{display: 'inline-block', marginLeft: 'auto', marginRight: '10px', fontSize: '10pt', color: 'rgb(200, 200, 200)'}}>{"attention: { "}</span>
                     {windowName}
-                    <span style={{display: 'inline-block', marginLeft: '10px', marginRight: 'auto', fontSize: '10pt', color: 'rgb(100, 100, 100)'}}> ˚｡⊹˖</span> 
+                    <span style={{display: 'inline-block', marginLeft: '10px', marginRight: 'auto', fontSize: '10pt', color: 'rgb(200, 200, 200)'}}>{" } has been selected."}</span> 
                 </WindowTopBarTitle>
             </WindowTopBar>
 
@@ -69,14 +68,14 @@ const WindowContainer = styled.div`
     min-height: 250px;
     min-width: 250px;
     max-height: 800px;
-    max-width: 1000px;
     height: fit-content;
     width: 100%;
-    padding: 0px;
+    margin-top: 50px;
+    padding: 20px;
     // background-color: rgba(250, 250, 250, 1);
-    // border: 5px solid rgb(250, 250, 250);
-    // box-shadow: ;
-    border-radius: 0px 0px 40px 40px;
+    background: linear-gradient(to top, #093c4c5f, #086262a1 90%, #126783bb);
+    border: 1px solid #8cfffffe;
+    border-top: 10px solid #8cfffffe;
     overflow-x: hidden;
     overflow-y: scroll;
     z-index: 998;
@@ -112,21 +111,23 @@ const WindowTopBar = styled.div`
     margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 40px 40px 0px 0px;
-    // border: 2px solid rgb(119, 163, 217);
-    // border-top: 2px solid rgb(250, 250, 250);
-    // border-left: 2px solid rgb(250, 250, 250);
-    // border-right: 2px solid rgb(250, 250, 250);
-    // border-bottom: 2px solid rgb(50, 50, 50);
-    // background-color: rgb(250, 250, 250);
-    // box-shadow: 0px 3px 5px rgba(250, 250, 250, 1);
+    border-radius: 0px 0px 0px 0px;
+    border-top: 1px solid #8cfffffe;
+    border-left: 5px solid #8cfffffe;
+    border-bottom: 1px solid #8cfffffe;
+    background: linear-gradient(to left, #093c4c5f, #197c7c85 75%, #1c97c1c0);
     overflow: hidden;
     z-index: 1000;
+    transition: filter .25s ease-in-out;
+
+    &:hover {
+        filter: brightness(1.5);
+    }
 `;
 
 const WindowTopBarTitle = styled.p`
     display: inline-block;
-    color: rgb(100, 100, 100);
+    color: rgb(250, 250, 250);
     font-size: 10pt;
     font-weight: 600;
     margin: auto;

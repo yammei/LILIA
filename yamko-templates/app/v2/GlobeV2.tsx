@@ -17,18 +17,33 @@ export const GlobeV2: React.FC = () => {
 
         scene.background = null;
 
-        const geometry = new THREE.SphereGeometry(2, 8, 8);
+        // Frame
+        const globeRadius = 2;
+        // const geometry = new THREE.SphereGeometry(globeRadius, 16, 16);
+        // const edgeMaterial = new THREE.MeshBasicMaterial({
+        //     color: 'rgb(200, 255, 150)',
+        //     wireframe: true,
+        //     transparent: true,
+        //     opacity: 1,
+        // });
+        // const edges = new THREE.Mesh(geometry, edgeMaterial);
+        // scene.add(edges);
 
-        const edgeMaterial = new THREE.MeshBasicMaterial({
-            color: 'rgb(255, 200, 225)',
+        // Ring
+        const ringRadius = globeRadius * 2;
+        const ringGeometry = new THREE.TorusGeometry(ringRadius, .5, 2, 6);
+        const ringMaterial = new THREE.MeshBasicMaterial({
+            color: 'rgb(0, 0, 0)',
             wireframe: true,
             transparent: true,
             opacity: 1,
         });
-        const edges = new THREE.Mesh(geometry, edgeMaterial);
-        scene.add(edges);
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+        ring.rotation.x = (Math.PI / 2) + .25;
+        ring.rotation.y += .5;
+        scene.add(ring);
 
-        camera.position.z = 4;
+        camera.position.z = 8;
 
         const resize = () => {
             if (!mountRef.current) return;
@@ -56,9 +71,11 @@ export const GlobeV2: React.FC = () => {
 
         const animate = () => {
             requestAnimationFrame(animate);
-            edges.rotation.x += 0.0005;
-            edges.rotation.y += 0.001;
+            // edges.rotation.x += 0.0005;
+            // edges.rotation.y -= 0.001;
 
+            // ring.rotation.x += 0.0005; 
+            ring.rotation.z += 0.001; 
             renderer.render(scene, camera);
         };
 
@@ -78,8 +95,8 @@ export const GlobeV2: React.FC = () => {
             <div
                 ref={mountRef}
                 style={{
-                    width: '20vw',
-                    height: '20vw',
+                    width: '500px',
+                    height: '500px',
                     objectFit: 'contain',
                 }}
             />
@@ -91,8 +108,8 @@ const GlobeContainer = styled.div`
     scale: 1;
     height: fit-content;
     width: fit-content;
-    margin-left: 50vw;
-    margin-top: calc(30vw * (1080/1920));
-    opacity: 0.2;
+    margin-left: 250px;
+    // margin-top: calc(30vw * (1080/1920));
+    opacity: 1;
     z-index: 999;
 `;

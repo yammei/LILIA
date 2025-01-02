@@ -1,5 +1,5 @@
-
 'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
@@ -68,31 +68,21 @@ const App = () => {
             return () => {
           window.removeEventListener('load', handlePageLoad);
         };
-      }, [setActiveWindow]);
+    }, [setActiveWindow]);
 
     return (
         <Container ref={containerRef}>
-            
-            <Row1>
-                {/* <MessageContainer style={{ zIndex: '1' }}>
-                    <Message />
-                </MessageContainer> */}
 
-                <FolderContainer>
-                    <FolderOrganizer>
-                        <Folder folderName={pages.page0.name} subAppID={0} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                        <Folder folderName={pages.page1.name} subAppID={1} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                        <Folder folderName={pages.page2.name} subAppID={2} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                        <Folder folderName={pages.page3.name} subAppID={3} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
-                    </FolderOrganizer>
-                </FolderContainer>
-            </Row1>
+            <FolderContainer>
+                <FolderOrganizer>
+                    <Folder folderName={pages.page0.name} subAppID={0} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                    <Folder folderName={pages.page1.name} subAppID={1} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                    <Folder folderName={pages.page2.name} subAppID={2} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                    <Folder folderName={pages.page3.name} subAppID={3} subAppSwitcher={switchSubApplications} activeSubApp={activeWindow} />
+                </FolderOrganizer>
+            </FolderContainer>
 
-            <Row2>
-                <SubApplicationContainer>
-                    {displaySubApplication()}
-                </SubApplicationContainer>
-            </Row2>
+                {displaySubApplication()}
 
             <div style={{height: '100px'}}></div>
         </Container>
@@ -105,10 +95,10 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    width: 1000px;
+    width: fit-content;
     margin: 20px auto;
     margin-top: 50px;
-    // background-color: yellow;
+    // background-color: beige;
 `;
 
 const MessageContainer = styled.div`
@@ -116,7 +106,6 @@ const MessageContainer = styled.div`
     flex-direction: column;
     align-items: center;
     margin: 10px auto;
-    margin-top: 0px;
     z-index: 1;
 `;
 
@@ -124,12 +113,15 @@ const FolderContainer = styled.div`
     display: flex;
     align-items: center;
     height: fit-content;
-    width: 400px;
+    width: 100%;
     margin: 5px auto;
     margin-top: 10px;
-    padding: 5px;
-    // background-color: rgb(250, 250, 250);
-    border-radius: 10px 10px 40px 40px;
+    margin-bottom: 50px;
+    padding: 10px 0px;
+    background: linear-gradient(to top, #093c4c5f, #0d767656 90%, #1267839d);
+    // border-radius: 10px 10px 40px 40px;
+    border: 1px solid #8cfffffe;
+    border-top: 10px solid #8cfffffe;
     box-shadow: 5px 7.5px 1px rgba(0, 0, 0, 0.1);
     z-index: 1;
 `;
@@ -144,8 +136,10 @@ const FolderOrganizer = styled.div`
 `;
 
 const SubApplicationContainer = styled.div`
-    width: calc(100% - 40px);
+    width: fit-content;
     margin-left: 40px;
+    // background-color: yellow;
+
     z-index: 999;
 `;
 
@@ -155,19 +149,18 @@ const Row1 = styled.div`
     // left: 200px;
     flex-direction: column;
     height: fit-content;
-    width: fit-content;
-    background-color: red;
+    width: 100%;
+    // background-color: red;
     border-radius: 50px;
 `;
 
 const Row2 = styled.div`
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     height: fit-content;
-    // background-color: cyan;
-    border-radius: 50px;
+    width: fit-content;
+    // background-color: red;
 `;
 
 export default App;

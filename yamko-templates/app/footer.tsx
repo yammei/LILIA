@@ -23,18 +23,19 @@ export const Footer = () => {
                 <Column2>
                     <div style={{marginRight: 'auto'}}></div>
                     <Links>
-                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Personal</LinkText>
-                        <LinkText>YouTube</LinkText>
-                        <LinkText>Discord</LinkText>
+                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Socials</LinkText>
+                        <LinkText>Blog (In Dev.)</LinkText>
+                        <LinkText>YouTube (In Dev.)</LinkText>
+                        <LinkText>Discord (In Dev.)</LinkText>
                     </Links>
                     <Links>
                         <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Professional</LinkText>
-                        <LinkText>LinkedIn</LinkText>
-                        <LinkText>Schedule Call</LinkText>
+                        <LinkText><a href='https://linkedin.com/in/mei-zh' target='_blank'>LinkedIn</a></LinkText>
+                        <LinkText><a href='https://github.com/yammei' target='_blank'>Github</a></LinkText>
                     </Links>
                 </Column2>
             </FooterContent>
-            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Developed using Next.js | Hosted on GCP Compute Engine | Last Updated: 12/2/2024</p><br/>
+            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Frontend: Next.js (TypeScript), Figma, Three.js | Backend: Node.js, GCP (Compute Engine) | Last Updated: 01/02/2024</p><br/>
         </FooterContainer>
     );
 };
@@ -48,6 +49,7 @@ const FooterContainer = styled.div`
     margin-top: 00px;
     padding: 50px 0px;
     background-color: rgb(25, 25, 25);
+    z-index: 999;
 `;
 const FooterContent = styled.div`
     display: flex;

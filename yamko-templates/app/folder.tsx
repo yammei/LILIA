@@ -109,7 +109,7 @@ interface FolderIMGProps {
 const FolderIMG = styled.div<FolderIMGProps>`
     cursor: pointer;
     height: auto;
-    width: 40px;
+    width: 75px;
     aspect-ratio: 1;
     // background-color: cyan;
     background-image: ${({ icon }) => `url(${icon.src})`};
@@ -118,13 +118,14 @@ const FolderIMG = styled.div<FolderIMGProps>`
     background-position: center;
     margin: auto;
     margin-top: 0px;
+    margin-left: -7.5px;
     margin-bottom: .25vw;
-    filter: brightness(3) sepia(1) hue-rotate(180deg) saturate(1.65);
+    filter: brightness(1) hue-rotate(240deg) saturate(1);
     transition: filter 0.15s ease-in-out, scale 0.15s ease-in-out;
 
     &:hover {
         scale: 1.05;
-        filter: brightness(2.75) sepia(1) hue-rotate(180deg) saturate(1.5);
+        filter: brightness(1.5) hue-rotate(240deg) saturate(1);
     }
 
     ${({ isTransitioning }) =>
@@ -141,7 +142,7 @@ const FolderIMG = styled.div<FolderIMGProps>`
 
 const FolderText = styled.p`
     display: inline-block;
-    color: rgb(75, 75, 75);
+    color: rgb(225, 225, 225);
     font-size: 8pt;
     text-align: center;
     line-height: 1.1;
