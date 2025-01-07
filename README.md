@@ -2,15 +2,10 @@
 
 Accessible @ <a href='https://evlmei.dev'>https://evlmei.dev</a><br>
 Site Status: Live<br>
-Date Deployed: 11.18.2024 | 04:30<br>
 Compute Region: us-west2<br>
-Release Version: 1.1 <br>
 
 Tech Stack: Typescript | Python (ARIA + CI/CD) | Next.js | Node.js | Docker | GCP: Compute Engine<br>
 Art & UI Tools: [柊山羊@Picrew](https://picrew.me/ja/image_maker/197705) | [TextStudio](https://www.textstudio.com/logo/bubble-style-3d-text-155) | [Figma](https://www.figma.com/design/MeCSc6lsmZkTEV3VXK7PB9/Untitled?node-id=0-1&t=Vd3kHDi6YENZzVjr-1) | [GIMP](https://www.gimp.org/downloads/thanks.html) | [FontAwesome](https://fontawesome.com/) | 
-
-
-To work on: adjust max compute instances, CI/CD, scale parent container to screen size.
 
 <h2>Development Log</h2>
 
@@ -56,7 +51,7 @@ Compute Region: us-west2
 Raw URL: https://yammei.wl.r.appspot.com
 ```
 
-Google App Engine DNS record changes.
+Google App Engine General DNS records.
 
 ```bash
 Type  Data                    Alias
