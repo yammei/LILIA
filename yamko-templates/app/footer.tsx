@@ -15,7 +15,7 @@ export const Footer = () => {
                 <Column1>
                     <BusinessCard>
                         <p style={{display: 'inline-block', color: 'rgb(250, 250, 250)', fontSize: '12pt', marginTop: '25px', marginBottom: '-10px'}}><b>May Zhang</b></p><br/>
-                        <p style={{display: 'inline-block', color: 'rgb(225, 225, 225)', fontSize: '8pt', margin: '-12.5px 0px'}}>Software Developer - San Francisco, CA</p><br/>
+                        <p style={{display: 'inline-block', color: 'rgb(225, 225, 225)', fontSize: '8pt', margin: '-12.5px 0px'}}>Software Developer - San Jose, CA</p><br/>
                         <a style={{display: 'inline-block', color: 'rgb(82, 137, 255)', fontSize: '8pt', margin: '-12.5px 0px'}} href="mailto:meizhang.dev@gmail.com">meizhang.dev@gmail.com</a><br></br>
                     </BusinessCard>
                     <div style={{marginLeft: 'auto'}}></div>
@@ -23,19 +23,19 @@ export const Footer = () => {
                 <Column2>
                     <div style={{marginRight: 'auto'}}></div>
                     <Links>
-                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Socials</LinkText>
-                        <LinkText>Blog (In Dev.)</LinkText>
-                        <LinkText>YouTube (In Dev.)</LinkText>
-                        <LinkText>Discord (In Dev.)</LinkText>
+                        <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Personals</LinkText>
+                        <LinkText><a href='https://github.com/yammei' target='_blank'>Github</a></LinkText>
+                        <LinkText><a href='https://yammei.github.io/' target='_blank'>Yam's Yums</a></LinkText>
+                        {/* <LinkText>Blog (In Dev.)</LinkText> */}
+                        {/* <LinkText>Discord (In Dev.)</LinkText> */}
                     </Links>
                     <Links>
                         <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Professional</LinkText>
                         <LinkText><a href='https://linkedin.com/in/mei-zh' target='_blank'>LinkedIn</a></LinkText>
-                        <LinkText><a href='https://github.com/yammei' target='_blank'>Github</a></LinkText>
                     </Links>
                 </Column2>
             </FooterContent>
-            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Frontend: Next.js (TypeScript), Figma, Three.js | Backend: Node.js, GCP (Compute Engine) | Last Updated: 01/02/2024</p><br/>
+            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Frontend: Next.js (TypeScript), Figma, Three.js | Backend: Node.js, GCP (Compute Engine) | Last Updated: 01/07/2025</p><br/>
         </FooterContainer>
     );
 };
