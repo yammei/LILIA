@@ -12,10 +12,6 @@ Art & UI Tools: [柊山羊@Picrew](https://picrew.me/ja/image_maker/197705) | [T
 
 To work on: adjust max compute instances, CI/CD, scale parent container to screen size.
 
-<h2>Most Recent Screenie</h2>
-
-<img src='https://github.com/yammei/yamko/blob/main/progress-images/Screenshot%202024-10-17%20at%2000.34.19.png'/>
-
 <h2>Development Log</h2>
 
 Setting up environment.
