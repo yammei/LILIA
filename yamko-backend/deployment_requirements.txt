@@ -1,0 +1,24 @@
+# pip3 install -r deployment_requirements.txt
+
+# FastAPI and ASGI server
+fastapi==0.115.0
+uvicorn[standard]==0.30.1
+
+# Machine Learning
+torch==2.4.0
+torchvision==0.19.0
+
+# Image processing
+pillow==10.4.0
+
+# Async file handling
+aiofiles==24.1.0
+
+# Environment variables
+python-dotenv==1.0.1
+
+# HTTP requests
+requests==2.32.3
+
+# Not sure
+python-multipart

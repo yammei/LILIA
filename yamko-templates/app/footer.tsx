@@ -15,8 +15,9 @@ export const Footer = () => {
                 <Column1>
                     <BusinessCard>
                         <p style={{display: 'inline-block', color: 'rgb(250, 250, 250)', fontSize: '12pt', marginTop: '25px', marginBottom: '-10px'}}><b>May Zhang</b></p><br/>
-                        <p style={{display: 'inline-block', color: 'rgb(225, 225, 225)', fontSize: '8pt', margin: '-12.5px 0px'}}>Software Developer - San Jose, CA</p><br/>
-                        <a style={{display: 'inline-block', color: 'rgb(82, 137, 255)', fontSize: '8pt', margin: '-12.5px 0px'}} href="mailto:meizhang.dev@gmail.com">meizhang.dev@gmail.com</a><br></br>
+                        <p style={{display: 'inline-block', color: 'rgb(225, 225, 225)', fontSize: '8pt', margin: '-12.5px 0px'}}>Software Engineer & ML Hobbyist</p><br/>
+                        <p style={{display: 'inline-block', color: 'rgb(225, 225, 225)', fontSize: '8pt', margin: '-12.5px 0px'}}>Santa Clara</p><br/>
+                        <a style={{display: 'inline-block', color: 'rgb(82, 137, 255)', fontSize: '8pt', margin: '-12.5px 0px'}} href="mailto:gmeil.antin.dev@gmail.com">gmeil.antin@gmail.com</a><br></br>
                     </BusinessCard>
                     <div style={{marginLeft: 'auto'}}></div>
                 </Column1>
@@ -25,6 +26,7 @@ export const Footer = () => {
                     <Links>
                         <LinkText style={{color: 'rgb(250, 250, 250)', fontSize: '14pt', fontWeight: '600', marginTop: '25px'}}>Personals</LinkText>
                         <LinkText><a href='https://github.com/yammei' target='_blank'>Github</a></LinkText>
+                        <LinkText><a href='https://www.kaggle.com/meizhang678678678' target='_blank'>Kaggle</a></LinkText>
                         <LinkText><a href='https://yammei.github.io/' target='_blank'>Yam's Yums</a></LinkText>
                         {/* <LinkText>Blog (In Dev.)</LinkText> */}
                         {/* <LinkText>Discord (In Dev.)</LinkText> */}
@@ -35,7 +37,7 @@ export const Footer = () => {
                     </Links>
                 </Column2>
             </FooterContent>
-            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Frontend: Next.js (TypeScript), Figma, Three.js | Backend: Node.js, GCP (Compute Engine) | Last Updated: 01/07/2025</p><br/>
+            <p style={{display: 'inline-block', color: 'rgb(200, 200, 200)', fontSize: '6pt', margin: '10px auto'}}>Frontend: Next.js, Figma, Three.js | Backend: FastAPI, GCP (GKE), Docker | Last Updated: 08/03/2025</p><br/>
         </FooterContainer>
     );
 };

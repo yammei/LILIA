@@ -62,7 +62,7 @@ const App = () => {
         const handlePageLoad = () => {
           console.log('Page fully loaded!');
         };
-        setActiveWindow(1);
+        setActiveWindow(0);
 
         window.addEventListener('load', handlePageLoad);
             return () => {

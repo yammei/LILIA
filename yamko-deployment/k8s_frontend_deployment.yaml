@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yamko-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: yamko-frontend
+  template:
+    metadata:
+      labels:
+        app: yamko-frontend
+    spec:
+      containers:
+      - name: yamko-frontend
+        image: gcr.io/baycarea/yamko-frontend:latest
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yamko-frontend-service
+spec:
+  selector:
+    app: yamko-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer

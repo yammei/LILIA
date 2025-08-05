@@ -15,13 +15,14 @@ import {
   CustomTable,
   H2,
   Chart
- } from '@/app/essentials';
- import { Inter } from '@next/font/google';
+} from '@/app/essentials';
+import BrainTumorClassifier from '@/app/cnn_showcase';
+import { Inter } from '@next/font/google';
 
- const customFont = Inter({
-     weight: '400',
-     subsets: ['latin'],
- });
+const customFont = Inter({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 const themes = colorThemes();
 
@@ -38,10 +39,33 @@ export const DataManager = () => {
       <DataManagerContainer className={customFont.className}>
 
         <BentoBoxContainer>
+          <BentoDish VerticalScale={2} HorizontalScale={2}>
+            <H2>Brain Tumor MRI Classification</H2>
+            <p style={{color: 'rgb(225, 225, 225)', fontSize: '8pt'}}>
+            An image classification model for identifying types of brain tumors.<br/>
+            Select an MRI scan below to classify.
+            </p>
+            <BrainTumorClassifier/>
+            <p style={{color: 'rgb(225, 225, 225)', fontSize: '6pt'}}>
+              Model Info:<br/>
+              Convolutional neural network using PyTorch
+              <sup>[<a href='https://docs.pytorch.org/docs/stable/nn.functional.html#convolution-functions' target='_blank' style={{color: 'lightblue'}}>ref</a>]</sup>.
+              <br/>
+              Data available at Kaggle by Masoud Nickparvar
+              <sup>[<a href='https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset' target='_blank' style={{color: 'lightblue'}}>ref</a>]</sup>.
+              <br/>
+              Labels: Glioma, Meningioma, Pituitary, No Tumor<br/>
+              Batch Size: 32 | Learning Rate: 0.001 | Epochs: 10<br/>
+              Accuracy: 95.73%
+            </p>
+            </BentoDish>
+        </BentoBoxContainer>
+
+        <BentoBoxContainer>
           <BentoDish VerticalScale={1.75} HorizontalScale={2}>
             <H2>Investment Inferencing</H2>
             <p style={{color: 'rgb(225, 225, 225)', fontSize: '8pt'}}>
-            An auto-regressive model for short-term predictions.<br/>
+            [Discontinued Support] An auto-regressive model for short-term predictions. <br/>
             Currently Observing: Palo Alto Networks (PANW).
             </p>
             <Chart/>
@@ -78,12 +102,14 @@ export const DataManager = () => {
             <H2>Latest Repository Commits</H2>
             <p style={{color: 'rgb(225, 225, 225)', fontSize: '8pt'}}>
               Tracks repository commits for implemented features.<br/>
-              Currently Tracking: LILIA, ARIA, WHIRL_2.
+              Currently Tracking: LILIA, ARIA, WHIRL_2, brain_tumor<br/>
+              _classification.
             </p>
             <CustomTable/>
             <p style={{color: 'rgb(225, 225, 225)', fontSize: '6pt'}}>
               Feature Info:<br/>
               Requests data using GitHub API
+              If data does not load, I've hit my rate limit.
               <sup>[<a href='https://docs.github.com/en/rest?apiVersion=2022-11-28' target='_blank' style={{color: 'lightblue'}}>ref</a>]</sup>.
             </p>
           </BentoDish>

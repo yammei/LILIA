@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { colorThemes } from './themes';
 
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE;
+
 const themes = colorThemes();
 
 export const H2 = styled.p`
@@ -50,7 +52,7 @@ export const BentoBoxContainer = styled.div`
     flex-direction: row;
     min-height: 250px;
     min-width: 250px;
-    max-height: 500px;
+    max-height: fit-content;
     height: fit-content;
     width: fit-content;
     margin: 0px auto;
@@ -205,7 +207,7 @@ export const CustomTable = () => {
   useEffect(() => {
     const fetchCommits = async () => {
       try {
-        const response = await fetch('https://evlmei.dev/api/commits');
+        const response = await fetch(`${API_BASE}/api/commits`);
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
@@ -340,7 +342,7 @@ export const Chart: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://evlmei.dev/api/panw');
+        const response = await fetch(`${API_BASE}/api/panw`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }

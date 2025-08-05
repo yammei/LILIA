@@ -1,0 +1,30 @@
+services:
+  backend:
+    build: ./yamko-backend
+    container_name: yamko-backend
+    ports:
+      - "3050:3050"
+    volumes:
+      - ./yamko-backend:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3050/docs"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build: ./yamko-templates
+    container_name: yamko-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./yamko-templates:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_BASE=http://backend:3050
+    depends_on:
+      backend:
+        condition: service_healthy

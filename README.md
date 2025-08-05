@@ -1,85 +1,106 @@
 <h1>mei_os: Dev Site</h1>
 
-Accessible @ <a href='https://evlmei.dev'>https://evlmei.dev</a><br>
-Site Status: Live<br>
-Compute Region: us-west2<br>
+<a href='https://evlmei.dev'>https://evlmei.dev</a><br>
 
-Tech Stack: Typescript | Python (ARIA + CI/CD) | Next.js | Node.js | Docker | GCP: Compute Engine<br>
-Art & UI Tools: [柊山羊@Picrew](https://picrew.me/ja/image_maker/197705) | [TextStudio](https://www.textstudio.com/logo/bubble-style-3d-text-155) | [Figma](https://www.figma.com/design/MeCSc6lsmZkTEV3VXK7PB9/Untitled?node-id=0-1&t=Vd3kHDi6YENZzVjr-1) | [GIMP](https://www.gimp.org/downloads/thanks.html) | [FontAwesome](https://fontawesome.com/) | 
-
-<h2>Development Log</h2>
-
-Setting up environment.
+# Dev Environment Run Commands
 
 ```bash
-sudo npx create-next-app@latest yamko-templates
-cd yamko-templates
-sudo chown -R <username> .
-```
-
-Running dev build.
-
-```bash
-cd yamko-templates
+# next.js @ yamko-templates
 sudo npm run dev
+
+# fastapi @ yamko-backend
+uvicorn main:app --host 127.0.0.1 --port 3050
 ```
 
-Dependency log.
+# Dockerization & GKE Deployment
 
 ```bash
-sudo npm install styled-components
-sudo npm install --save-dev @types/styled-components
-sudo npm install chart.js react-chartjs-2
-sudo npm install @next/font
-sudo npm install @next/font google
-```
+docker-compose up --build
 
-Deployment log.
+gcloud services enable containerregistry.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
+gcloud auth configure-docker
 
-```bash
-gcloud init
-gcloud auth login
+docker buildx create --use
+docker buildx ls
+docker buildx use pensive_pascal
+docker buildx prune --all
+docker buildx inspect --bootstrap
 
-gcloud projects create yammei --set-as-default
-gcloud config set project yammei
+docker buildx build \
+  --platform linux/amd64 \
+  -t gcr.io/baycarea/yamko-backend:latest \
+  ./yamko-backend \
+  --push
 
-sudo npm run build
-gcloud app deploy
-gcloud app browse
+docker buildx build \
+  --platform linux/amd64 \
+  -t gcr.io/baycarea/yamko-frontend:latest \
+  ./yamko-templates \
+  --push
 
-Compute Region: us-west2
-Raw URL: https://yammei.wl.r.appspot.com
-```
+gcloud container clusters get-credentials flask-cluster \
+  --zone us-west1-a \
+  --project baycarea
 
-Google App Engine General DNS records.
+kubectl apply -f yamko-deployment/k8s_backend_deployment.yaml
+kubectl apply -f yamko-deployment/k8s_frontend_deployment.yaml
 
-```bash
-Type  Data                    Alias
-A	    216.239.32.21
-A	    216.239.34.21
-A	    216.239.36.21
-A	    216.239.38.21
-AAAA	2001:4860:4802:32::15
-AAAA	2001:4860:4802:34::15
-AAAA	2001:4860:4802:36::15
-AAAA	2001:4860:4802:38::15
-CNAME	ghs.googlehosted.com    www
-```
+# use if there are code updates
+kubectl rollout restart deployment yamko-backend
+kubectl rollout restart deployment yamko-frontend
 
-Frontend Reset
+gcloud components install kubectl
+kubectl version --client
+gcloud components install gke-gcloud-auth-plugin
 
-```bash
-sudo pkill -f 'node.*yamko-templates'
-sudo fuser -k 3000/tcp
-cd ~/LILIA/yamko-templates && sudo npm install && sudo npm run build
-cd ~/LILIA/yamko-templates && sudo nohup npm run start > ~/LILIA/yamko-templates/app.log 2>&1 &
-```
+gcloud container images list
 
-Backend Reset
+kubectl get pods
+kubectl get services
 
-```bash
-sudo pkill -f 'node.*yamko-backend'
-sudo fuser -k 3050/tcp
-cd ~/LILIA/yamko-backend && sudo npm install
-sudo nohup node ~/LILIA/yamko-backend/server.js > ~/LILIA/yamko-backend/server.log 2>&1 &
+kubectl describe service yamko-backend-service
+kubectl describe service yamko-frontend-service
+
+gcloud compute firewall-rules list
+
+gcloud compute firewall-rules create k8s-fw-allow-https \
+  --network=default \
+  --direction=INGRESS \
+  --priority=1000 \
+  --allow=tcp:443 \
+  --target-tags=gke-flask-cluster \
+  --description="Allow HTTPS traffic to GKE Ingress"
+
+PROJECT_ID=baycarea
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member "serviceAccount:$PROJECT_ID.svc.id.goog[default/default]" \
+  --role "roles/storage.objectViewer"
+
+kubectl set image deployment yamko-backend yamko-backend=gcr.io/baycarea/yamko-backend:latest
+kubectl set image deployment yamko-frontend yamko-frontend=gcr.io/baycarea/yamko-frontend:latest
+
+kubectl delete pods -l app=yamko-backend
+kubectl delete pods -l app=yamko-frontend
+
+kubectl describe pod -l app=yamko-backend
+kubectl describe pod -l app=yamko-frontend
+
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.4/cert-manager.yaml
+kubectl apply -f yamko-deployment/yamko_ingress.yaml
+
+kubectl get ingress yamko-ingress
+nslookup evlmei.dev
+
+gcloud compute addresses create yamko-ip \
+  --global \
+  --ip-version=IPV4
+
+kubectl get pods
+kubectl describe svc yamko-frontend-service
+kubectl describe svc yamko-backend-service
+
+kubectl apply -f yamko-deployment/yamko_frontend_service.yaml
+kubectl apply -f yamko-deployment/yamko_backend_service.yaml
+kubectl apply -f yamko-deployment/cluster_issuer.yaml
 ```
